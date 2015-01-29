@@ -1,0 +1,28 @@
+## Interface: 60000
+## Title: Garrison JukeBox
+## Notes: A jukebox for playing music while in a garrison.
+## Author: Azmaedus
+## Version: v1.0.9.0 release
+## SavedVariables: GarrisonJukeBoxDB, GarrisonJukeBoxLDBIconDB
+## License: GPLv2
+## X-Curse-Packaged-Version: v1.0.9.0 release
+## X-Curse-Project-Name: Garrison JukeBox
+## X-Curse-Project-ID: garrisonjukebox
+## X-Curse-Repository-ID: wow/garrisonjukebox/mainline
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
+
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+
+#@no-lib-strip@
+Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
+#@end-no-lib-strip@
+
+locales\Locale-enUS.lua
+locales\Locale-frFR.lua
+locales\Locale-zhCN.lua
+GarrisonJukeBox.lua
+musictable.lua
+zonetable.lua
