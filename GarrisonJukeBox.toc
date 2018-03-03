@@ -1,11 +1,11 @@
-## Interface: 60000
+## Interface: 70100
 ## Title: Garrison JukeBox
-## Notes: A jukebox for playing music while in a garrison.
+## Notes: A jukebox for playing wow embedded music.
 ## Author: Azmaedus
-## Version: v1.0.9.0 release
+## Version: v2.0.2.5 release
 ## SavedVariables: GarrisonJukeBoxDB, GarrisonJukeBoxLDBIconDB
 ## License: GPLv2
-## X-Curse-Packaged-Version: v1.0.9.0 release
+## X-Curse-Packaged-Version: v2.0.2.5 release
 ## X-Curse-Project-Name: Garrison JukeBox
 ## X-Curse-Project-ID: garrisonjukebox
 ## X-Curse-Repository-ID: wow/garrisonjukebox/mainline
@@ -23,6 +23,40 @@ Libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
 locales\Locale-enUS.lua
 locales\Locale-frFR.lua
 locales\Locale-zhCN.lua
+locales\Locale-deDE.lua
 GarrisonJukeBox.lua
-musictable.lua
-zonetable.lua
+globals\funcs.lua
+options\jukebox.lua
+options\zones.lua
+options\adv.lua
+options\stm.lua
+options\settings.lua
+options\audio.lua
+options\about.lua
+events\events.lua
+core.lua
+music\mus_vanilla.lua
+music\mus_bc.lua
+music\mus_wotlk.lua
+music\mus_cata1.lua
+music\mus_cata2.lua
+music\mus_mop.lua
+music\mus_wod.lua
+music\mus_events.lua
+music\mus_blizzjukebox.lua
+music\mus_legion.lua
+zones\zon_kalimdor.lua
+zones\zon_eastern.lua
+zones\zon_outland.lua
+zones\zon_north.lua
+zones\zon_cata.lua
+zones\zon_pandaria.lua
+zones\zon_draenor.lua
+zones\zon_battlegrounds.lua
+zones\zon_scenarios.lua
+zones\zon_dungeons.lua
+zones\zon_raids.lua
+zones\zon_legion.lua
+minimap\mm.lua
+mplayer\config.lua
+coms\coms.lua

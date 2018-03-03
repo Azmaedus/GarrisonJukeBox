@@ -1,0 +1,41 @@
+local GJB = LibStub("AceAddon-3.0"):GetAddon("GarrisonJukeBox")
+local L = GJB.L -- local L = LibStub("AceLocale-3.0"):GetLocale("GarrisonJukeBox")
+
+local zones = {
+	{L["ZONE_ANHQIRAJ"], 772},
+	{L["ZONE_AMMENVALE"], 894},
+	{L["ZONE_ASHENVALE"], 43},
+	{L["ZONE_ZASHARA"], 181},
+	{L["ZONE_AZUREMYST"], 464},
+	{L["ZONE_BLOODMYST"], 476},
+	{L["ZONE_CAMPNARACHE"], 890},
+	{L["ZONE_DARKSHORE"], 42},
+	{L["ZONE_DARNASSUS"], 381},
+	{L["ZONE_DESOLACE"], 101},
+	{L["ZONE_DUROTAR"], 4},
+	{L["ZONE_DUSTWALLOWMARSH"],141 },
+	{L["ZONE_ECHOISLES"], 891},
+	{L["ZONE_FELWOOD"], 182},
+	{L["ZONE_FERALAS"], 121},
+	{L["ZONE_MOLTENFRONT"], 795},
+	{L["ZONE_MOONGLADE"], 241},
+	{L["ZONE_MTHYJAL"], 606},
+	{L["ZONE_MULGORE"], 9},
+	{L["ZONE_NBARRENS"], 11},
+	{L["ZONE_ORGRIMMAR"], 321},
+	{L["ZONE_SHADOWGLEN"], 888},
+	{L["ZONE_SILITHUS"], 261},
+	{L["ZONE_SBARRENS"], 607},
+	{L["ZONE_STMOUNTAINS"], 81},
+	{L["ZONE_TANARIS"], 161},
+	{L["ZONE_TELDRASSIL"], 41},
+	{L["ZONE_EXODAR"], 471},
+	{L["ZONE_1KNEEDLES"], 61},
+	{L["ZONE_THUNDERBLUFF"], 362},
+	{L["ZONE_ULDUM"], 720},
+	{L["ZONE_UNGORO"], 201},
+	{L["ZONE_VALLEYTRIALS"], 889},
+	{L["ZONE_WINTERSPRING"], 281},
+}
+
+GJB.zonetable[GJB.ZONE_KALIMDOR] = zones

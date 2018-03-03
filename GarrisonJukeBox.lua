@@ -126,1559 +126,235 @@
 	01/26/2015 - 1.0.8.2	Added toggle in options UI to show/hide music player.
 									Added slash command /gjb showplayer ~ hideplayer.
 	01/28/2015 - 1.0.9.0	Switched from using GJBPlayer to FrameX lib for managing the creation of frames.
+									Fixed a few issues with inter-addon communication
+									Added 90% compatibility with 1.0.8.0+
+									Fixed option "Hide Music Player" in the options UI that worked reversely to its intended behaviour. When checked, it showed the player.
+	02/07/2015 - 1.0.9.1	Added Raids & Dungeons (Highmaul & BR Foundry) others to come
+									Fixed issue of hiding the music player caused a lua error on line 595
+									Fixed a few issues with inter-addon communication. (still not fully working)
+	02/07/2015 - 1.1.0.0	Split up options UI into several categories to create some space for other features.
+									Implemented an exclusion list to avoid playing specific unwanted mp3s from titles.
+	02/08/2015 - 1.1.0.1	Fixed issue with inline play and non shuffle play.
+									Added nil check for function SongInBlackList .
+									Added some more evens and other musics.
+									Added an option to disregard zonelist and play the jukebox everywhere.
+	02/23/2015 - 1.1.0.2	Added the Angelic music to Classic >> Ashenvale.
+	02/23/2015 - 1.1.0.3	Added resetpos slash command.
+									Fixed issue where during a pet battle and having the pet battle option checked, would play the original garrison music instead of the pet battle music.
+									Fixed localization of slash command buttons showplayer and hideplayer.
+									Fixed issue with frame positioning; wasn't calling ClearAllPoints() prior in LibFrameX:setPosition.
+									Updated the about tab with missing slash commands.
+	02/23/2015 - 1.1.0.4 	Forgot to upload locale enUS.
 	
+	==== 6.1 (60100) ===
+	02/24/2015 - 1.1.0.5	Updated toc for interface version 60100.
+	02/26/2015 - 1.1.0.6	Fixed issue when a single entry was in the jukebox list and the options 'Shuffle' + 'Inline' were selected would cause the item to play without changing subindex.
+									Fixed issue with exclusion list entering an infinite loop that caused the game to freeze.
+									Completed the Classic >> Molten Core music title.
+	02/27/2015 - 1.2.0.0	Added an advanced tab to create customized playlists that play within select zones.
+									Fixed issues related to exclusions that would cause an invalid error message or infinte loop
+	03/01/2015 - 1.2.0.1	Fixed issue with exclusion of multiple non consecutive items would crash the game (infinite loop)
+	03/03/2015 - 1.2.0.2	Fixed issue with possible nil in exclusion list finder
+									Added missing Molten Core music files
+	03/04/2015 - 1.2.0.3	Fixed error in music of Teldrasil; seperated Elwynn Forest into its own title.
+	03/06/2015 - 1.2.0.4	Devised a better way of sampling music.
+	03/07/2015 - 1.2.0.5	Fixed issue with playing music when all music is selected without anything configured in the jukebox.
+	03/07/2015 - 1.2.0.6	Fixed all Stop commands that were not cancelling the timer to play the next song.
+	03/10/2015 - 1.2.0.7	Fixed infinite loop when All Zones was checked with an empty jukebox.
+	05/09/2015 - 1.2.0.8	Added a feature to play a silent file between songs in the playlist.
+	05/09/2015 - 1.2.0.9	Fixed lazy programming of added feature in 1.2.0.8. Bad Az!
+									Changed from an input box to a range select for time of pause setting.
+	05/16/2015 - 1.2.0.10	Added Proving Grounds zone
+	
+	==== 6.2 (60200) ===
+	05/16/2015 - 1.2.0.11	Changed version ID to 60200
+	08/06/2015 - 1.2.1.0	Added STMode (Single Track Mode) To create another type of musiclist populated with .mp3s instead of titles.
+
+	==== Version 2 rewrite ===
+	09/19/2015 - 2.0.0.0	Version 2 complete rewrite of the code with modularization.
+										Fixed creation of music player main frame to UIParent. (alt+z)
+	
+	10/04/2015 - 2.0.0.2	Added a message box to display beta information.
+										Fixed inter-addon communication.
+										
+	10/05/2015 - 2.0.0.3	Release
+	
+	10/09/2015 - 2.0.0.4	Fixed a bug to get excluded files in advanced mode.
+	
+	10/30/2015 - 2.0.0.5	Added better search capabilities to fetch items in the musictable by using an indexing table.
+										Converted the Blizzard Music Rolls 6.1 to use PlayMusic instead of PlaySoundKitID
+										Added Tanaan Jungle Music
+										Added Invincible Music
+										Added Valley of the Four Winds Music
+	
+	11/15/2015 - 2.0.0.6	Disabled support for PlaySoundKitID() as it was causing unwanted behaviour (SetCVar Sound_EnableMusic)
+
+	11/15/2015 - 2.0.0.7	Minor bug fixes.
+	
+	12/13/2015 - 2.0.0.8	Added Bug Helper (Fix) for music continuing to play (Tune-O-Tron 5000) after exiting the Garrison.
+
+	03/28/2016 - 2.0.0.11 Fixed issue with server response "cannot find player x" when sharing music with party.
+	
+	05-23-2016 - 2.0.1.0	Started work on history list.
+	
+	07-10-2016 - 2.0.1.1	Started to add Legion Zones & Music into Legion Beta.
+	
+	07-20-2016 - 2.0.1.2	Completed Legion related entries that I could find.
+										Disabled Legion entries until launch.
+										Fixed issue on PEW event triggering twice using PEW delta time.
+	
+	07-21-2016 - 2.0.1.3	Commented debug OnZone trigger.
+										
+	07-20-2016 - 2.0.1.2	Completed Legion related entries that I could find.
+										Disabled Legion entries until launch.
+										Fixed issue on PEW event triggering twice using PEW delta time.
+										
+	07-20-2016 - 2.0.1.3	Commented OnZone trigger. Deleted version (bad build)
+	
+	07-23-2016 - 2.0.1.4	Fixed Zones category bug in options screen.
+	
+	07-31-2016 - 2.0.1.5	Removed anoying empty history frame.
+	
+	07-31-2016 - 2.0.1.6	Fixed a non tested change /slapmyself.
+	
+	08-04-2016 - 2.0.2.3b	Added missing zones up to WoD.
+										Enhanced the localization code (embedded localization with addon as a member).
+										Fixed music player back and play buttons (bug)
+										Removed GJB from the global space.
+										Temp fixed previous version saved variables reset with user choice (work in progress).
+										
+	08-30-2016 - 2.0.2.3	Release version
+	
+	09-10-2016 - 2.0.2.4	Added a reset button in settings to reset all addon configurations except for the playlists and zones.
+	
+	03-03-2017 - 2.0.2.5	Changed interface version to 70100
+									
 	Known Bugs
 	--------------------
-	- Sometimes, the music player dimensions are incorrect and the frame appears bloated. A simple drag and /reload should solve it temporarily.
-	- The option "Hide Music Player" in the options UI works reversely to its intended behaviour. When checked, it shows the player.
-	
-	TODO List
-	--------------------
-	- TODO[1]: Will we allow duplicate titles to be added to the jukebox list?
+	- The alignment of text in the selected sample music is aligned to the right but should be left. This is caused by Ace3 GUI; not a bug.
+	- Sometimes when changing from a zone not on the zonelist to a zone that is, GJB will play 2 consecutive songs. Possibly fixed but needs additional testing.
 ]]
 
--- Lua APIs
-local tinsert, tconcat, tremove = table.insert, table.concat, table.remove
-local fmt, tostring = string.format, tostring
-local select, pairs, next, type, unpack = select, pairs, next, type, unpack
-local loadstring, assert, error = loadstring, assert, error
-local setmetatable, getmetatable, rawset, rawget = setmetatable, getmetatable, rawset, rawget
-
 -- Load the Ace libraries --
-GJB = LibStub("AceAddon-3.0"):NewAddon("GarrisonJukeBox", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "AceComm-3.0", "AceSerializer-3.0")
+local GJB = LibStub("AceAddon-3.0"):NewAddon("GarrisonJukeBox", "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "AceComm-3.0", "AceSerializer-3.0")
 local L = LibStub("AceLocale-3.0"):GetLocale("GarrisonJukeBox")
-
-local LTC = LibStub("LibTColor-1.0")
-assert(LTC, "LibTColor-1.0 not loaded!")
-
-local LFX = LibStub("LibFrameX-1.0")
-assert(LFX, "LibFrameX-1.0 not loaded!")
-
--- Embedding functions from LFX
-GJB.makeFrames = LFX.makeFrames
-GJB.getBD = LFX.getBD
-GJB.setBD = LFX.setBD
-GJB.getBRGBA = LFX.getBRGBA
-GJB.setBRGBA = LFX.setBRGBA
-GJB.getRGBA = LFX.getRGBA
-GJB.setRGBA = LFX.setRGBA
-GJB.getDimensions = LFX.getDimensions
-GJB.setDimensions = LFX.setDimensions
-GJB.getVisibility = LFX.getVisibility
-GJB.setVisibility = LFX.setVisibility
-GJB.getPosition = LFX.getPosition
-GJB.setPosition = LFX.setPosition
-GJB.getFrameCaption = LFX.getFrameCaption
-GJB.setFrameCaption = LFX.setFrameCaption
+GJB.L = L
 
 -- metadata
 GJB.gVersion = GetAddOnMetadata("GarrisonJukeBox", "Version")
-GJB.gVersionID = {1,0,9,0,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
-GJB.gCurReleaseDate = "01/28/2015"
-_G["GJB"] = GJB
+GJB.gVersionID = {2,0,2,5,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
+GJB.gCurReleaseDate = "03/03/2017"
 
--- table to hold all music and zone data
+-- table to hold all music and zone and music player data
 GJB.musictable = {}
+GJB.mtid = {}	-- Table to hold the musictable position references with id's as keys
 GJB.zonetable = {}
+GJB.mplayer = {}
+GJB.mbox = {}
+GJB.gMilestone1210 = {1,2,1,0,3} -- Used to test for previous or equal to version 1.2.1.0 (Milestone1)
 
 -- constants
-local ON_LOAD_TIMER = 5			-- HACK!!! wait n seconds when PLAYYER_LOGIN is triggered before playing music (make sure Blizz level loading script doesn't override PlayMusic() call)
-local ON_ZONE_TIMER = 2			-- HACK!!! wait n seconds when one of 3 zone change events are triggered before playing music (make sure the zoneID has been updated)
-local ON_PETBATTLE_TIMER = 1	-- Number of seconds to wait after a pet battle has ended before starting to play jukebox.
-local PLAYERROR_INV_STRING = 1	-- When an invalid string is passed (nil or "")
-local PLAYERROR_INV_TITLE = 2	-- When an invalid title is passed (remove the corrupted entry from jukebox)
-local COMM_PREFIX = "GJB"		-- Used with AceComm prefix concatenation
+GJB.VERSION_TABLE_SIZE = 5			-- Number of elements in version table.
+GJB.PLAYERROR_NONE = 0
+GJB.PLAYERROR_TITLE_NIL = 1			-- When an nil table is passed to PlayMusicList
+GJB.PLAYERROR_INV_TITLE = 2			-- When an invalid title is passed (remove the corrupted entry from jukebox)
+GJB.SILENT_PAUSE = 3						-- default silent pause between songs in the playlist
+GJB.MT_MUSICID = 1						-- Index of the id position in a musictable title's song table
+GJB.MT_MUSICFILE = 2						-- Index of the filename position in a musictable title's song table
+GJB.MT_MUSICLEN = 3						-- Index of the length position in a musictable title's song table
+GJB.COMM_PREFIX = "GJB"				-- Used with AceComm prefix concatenation
+GJB.ON_LOAD_TIMER = 5					-- HACK!!! wait n seconds when PLAYYER_LOGIN is triggered before playing music (make sure Blizz level loading script doesn't override PlayMusic() call)
+GJB.ON_ZONE_TIMER = 2					-- HACK!!! wait n seconds when one of 3 zone change events are triggered before playing music (make sure the zoneID has been updated)
+GJB.ON_PETBATTLE_TIMER = 1			-- Number of seconds to wait after a pet battle has ended before starting to play jukebox.
+GJB.ZT_ZONENAME = 1
+GJB.ZT_ZONEID = 2
+GJB.ZL_ZONENAME = "name"
+GJB.ZL_CONTID = "cont"
+GJB.ZL_ZONEID = "zone"
+GJB.PEWTIME_ALLOWANCE = 3		-- Allowance of time disabling double PEW from triggering next song.
+
+-- Expansion Constants
+GJB.EXP_WOW = 1
+GJB.EXP_BC = 2
+GJB.EXP_WOTLK = 3
+GJB.EXP_CATA1 = 4
+GJB.EXP_CATA2 = 5
+GJB.EXP_MOP = 6
+GJB.EXP_WOD = 7
+GJB.EXP_EVENTS = 8
+GJB.EXP_BLIZZJB = 9
+GJB.EXP_LEGION = 10
+
+-- Zone Constants
+GJB.ZONE_KALIMDOR = 1
+GJB.ZONE_EASTERN = 2
+GJB.ZONE_OUTLAND = 3
+GJB.ZONE_NORTH = 4
+GJB.ZONE_CATA = 5
+GJB.ZONE_PANDA = 6
+GJB.ZONE_DRAENOR = 7
+GJB.ZONE_RAIDS = 8
+GJB.ZONE_DUNGEONS = 9
+GJB.ZONE_BATTLEGROUNDS = 10
+GJB.ZONE_SCENARIOS = 11
+GJB.ZONE_LEGION = 12
+
+-- time related globals
+GJB.PEWdelta = 0
+GJB.PEWlasttime = 0
+GJB.PEWTriggered = false
 
 -- globals
-GJB.gMusicPlaying = false 		-- is the music currently playing
-GJB.gMusicIndex = 1				-- current item index of table musicfiles
-GJB.gMusicIndexPrev = 0			-- previous index to make sure that items don't play twice in a row
-GJB.gMusicIndexIn = 1			-- current item index of sub-items inside the musictable structure
-GJB.gMaxMusic = 0				-- number of items in musicfiles table
-GJB.gMaxMusicIn = 0				-- number of sub-items in musictable structure
-GJB.gCurZoneID = 0				-- Current Zone ID returned from GetCurrentMapAreaID()
-GJB.gPrevZone = 0				-- holder for comparison when changing zones (in case going into same zone) O.o
-GJB.gPetBattleEnabled = false 	-- Pet battle event state
-GJB.gSampleIndex = 1			-- current index of sub-item for playing sample music
-GJB.gSampleLastIndex = 1		-- last index used to play sub-item sample music
-GJB.gSamplePlayed = ""			-- expansion+title string of last played sample music
-GJB.gErrorPlay = false			-- state of last play attempt (true == error)
-GJB.gOODShouted = false;		-- set to true when addon has printed an out-of-date message to the chat pane
+GJB.gMusicPlaying = false 				-- is the music currently playing
+GJB.gMaxTitles = 0							-- maximum number of titles in a playlist table
+GJB.gTitleIndex = 1							-- current item index of table musicfiles
+GJB.gTitleIndexPrev = 0						-- previous index to make sure that items don't play twice in a row
+GJB.gMaxMusic = 0							-- number of sub-items in musictable structure
+GJB.gMusicIndex = 1							-- current item index of sub-items inside the musictable structure
+GJB.gMusicIndexPrev = 0					-- current item index of sub-items inside the musictable structure
+GJB.gCurZoneID = 0							-- Current Zone ID returned from GetCurrentMapAreaID()
+GJB.gPrevZone = 0							-- holder for comparison when changing zones (in case going into same zone) O.o
+GJB.gPetBattleEnabled = false 			-- Pet battle event state
+GJB.gSampleIndex = 1						-- current index of sub-item for playing sample music
+GJB.gSampleLastIndex = 1					-- last index used to play sub-item sample music
+GJB.gSamplePlayed = ""						-- expansion+title string of last played sample music
+GJB.gErrorPlay = GJB.PLAYERROR_NONE	-- state of last play attempt (true == error)
+GJB.gOODShouted = false					-- set to true when addon has printed an out-of-date message to the chat pane
+GJB.gAllExcluded = false					-- tells the system if the selected title's sub-items are all excluded.
+GJB.samplesound = 1							-- key for sample sound select
+GJB.silentpause = SILENT_PAUSE		-- silent pause between songs in the playlist
+GJB.silentpausestate = false				-- state of the silent pause. false indicates that a music file is being played from the playlist. true indicates that the system is in a pause before playing the next item.
+GJB.mplayerloaded = false					-- Music Player loaded state
 
-GJB.Party = {}					-- table to hold all player names that are in the party (used for the party leader)
-GJB.BlackList = {}				-- BNlacklist of already queried characters for version OOD
+GJB.Party = {}									-- table to hold all player names that are in the party (used for the party leader)
+GJB.BlackList = {}								-- BNlacklist of already queried characters for version OOD
 
-GJB.expac = "i1wow"				-- Holder for Expansion/Category select
-GJB.music = 1					-- Holder for Music select
-GJB.jukebox = ""				-- Holder for currently selected item in jukebox select
-GJB.playsoundfile = ""			-- Holder for Play File input
-GJB.doubleslashes = true		-- Holder for Double Slashes toggle
-GJB.continent = "i1kalimdor"	-- Holder for Continent select
-GJB.zone = 1					-- Holder for Zone select
-GJB.zonebox = ""				-- Holder for currently selected item in zone select
+GJB.expac = 1 --								-- Holder for Expansion/Category select
+GJB.title = 1										-- Holder for Music select
+GJB.jukebox = 1								-- Holder for currently selected item in jukebox select
+GJB.playsoundfile = ""						-- Holder for Play File input
+GJB.doubleslashes = true					-- Holder for Double Slashes toggle
+GJB.continent = 1								-- Holder for Continent select
+GJB.zone = 1										-- Holder for Zone select
+GJB.zonebox = 1								-- Holder for currently selected item in zone select
 
-local moduleOptions = {}    	-- Table for [Load On Demand] module options registration
+GJB.moduleOptions = {}  					-- Table for [Load On Demand] module options registration
 
--- ---------------------------------------------
--- create minimap icon
--- ---------------------------------------------
-function GJB:CreateMinimapIcon()
-	local ldb = LibStub:GetLibrary("LibDataBroker-1.1", true)
-	local plugin = ldb:NewDataObject("GarrisonJukeBox", {
-		type = "data source",
-		text = "0",
-		icon = "Interface\\AddOns\\GarrisonJukeBox\\media\\icon",
-	})
+-- Advanced tab
+GJB.advexpac = 1								-- Holder for Expansion/Category select
+GJB.advtitle = 1									-- Holder for Music select
+GJB.advcont = 1								-- Holder for Continent select
+GJB.advzone = 1								-- Holder for Zone select
+GJB.advzonebox = 1							-- Holder for currently selected item in your zones select
+GJB.advtitlebox = 1							-- Holder for currently selected item in your titles select
 
-	function plugin.OnClick(self, button)
-		if button == "LeftButton" then
-			GJB:ShowConfig()
-		elseif button == "RightButton" then
-			if GJB.db.profile.hidemusicplayer == true then
-				GJB.db.profile.hidemusicplayer = false
-				GJB:setVisibility("GJBP_BG", true)
-			else
-				GJB.db.profile.hidemusicplayer = true
-				GJB:setVisibility("GJBP_BG", false)
-			end
-		end
-	end
+-- STMode
+GJB.stmode = false							-- checkbox for enabling disabling single track mode
+GJB.stm_expac = 1							-- Holder for Expansion/Category select
+GJB.stm_continent = 1						-- Holder for Continent select
+GJB.stm_title = 1								-- Holder for Music select
+GJB.stm_jukebox = 1							-- Holder for currently selected item in jukebox select
+GJB.stm_samplesound = 1
 
-	local hint = L["ICON_CLICK"]
-	local hint2 = L["ICON_RCLICK"]
-	function plugin.OnTooltipShow(tt)
-		tt:AddLine(L["ADDON_NAME"])
-		tt:AddLine(" ")
-		tt:AddLine(hint, 0.2, 1, 0.2, 1)
-		tt:AddLine(" ")
-		tt:AddLine(hint2, 0.2, 1, 0.2, 1)
-	end
-
-	local f = CreateFrame("Frame")
-	f:SetScript("OnEvent", function()
-		GJB.icon = LibStub("LibDBIcon-1.0", true)
-		if not GarrisonJukeBoxLDBIconDB then GarrisonJukeBoxLDBIconDB = {} end
-		GJB.icon:Register("GarrisonJukeBox", plugin, GarrisonJukeBoxLDBIconDB)
-	end)
-	f:RegisterEvent("PLAYER_LOGIN")
-end
-
--- Music Player Config
-local musicplayer = {
-	{
-		--root = true,
-		ftype = "Frame",
-		name = "GJBP_BG",
-		rgba = {r = 0, g = 0, b = 0, a = 0.7},
-		brgba = {r = 255, g = 255, b = 255, a = 0.5},
-		dim = {w = 200, h = 40, s = 1},
-		pos = {x = 0, y = 0, a = "TOPLEFT", r = UIParent, rp = "CENTER"},
-		bd = {
-			bgFile = [[Interface\ChatFrame\ChatFrameBackground]],
-			edgeFile = [[Interface/Tooltips/UI-Tooltip-Border]],
-			tile = true, tileSize = 4, edgeSize = 4,
-			insets = { left = 1, right = 1, top = 1, bottom = 1 }
-		},
-		show = true,
-		movable = {
-			enabled = true, 
-			drag = {"RightButton"},
-		},
-		scripts = {
-			{
-				event = "OnDragStart", 
-				func = function( self )
-					if IsAltKeyDown() then
-						self:StartMoving()
-					end
-				end
-			},
-			{
-				event = "OnDragStop", 
-				func = function( self )
-					self:StopMovingOrSizing()
-					pos = GJB.db.profile.musicplayer.pos
-					pos.a, pos.r, pos.rp, pos.x, pos.y = self:GetPoint(1)
-				end
-			},
-		},
-		children = {
-			{
-				ftype = "Frame",
-				name = "GJBP_HeaderBG",
-				text = { show = true, caption = L["GJBP_TITLE"], color = {r = 255, g = 255,	b = 255,	a = 1}, fs = "NumberFont_Shadow_Small", halign = "CENTER", valign = "CENTER"},
-				rgba = {r = 123, g = 123, b = 123, a = 0},
-				brgba = {r = 0, g = 0, b = 0, a = 0},
-				dim = {w = 190, h = 20, s = 1},
-				pos = {x = 5, y = -1, a = "TOPLEFT", r = "GJBP_BG", rp = "TOPLEFT"},
-				show = true,
-			},
-			{
-				ftype = "Button",
-				name = "GJBP_Btn_Prev",
-				template = "UIPanelButtonTemplate",
-				text = { show = true, caption = L["CMD_PREV"], color = {r = 255, g = 255,	b = 255,	a = 1}, fs = "NumberFont_Shadow_Small", halign = "CENTER", valign = "CENTER"},
-				rgba = {r = 123, g = 123, b = 123, a = 0},
-				brgba = {r = 0, g = 0, b = 0, a = 0},
-				dim = {w = 45, h = 17, s = 1},
-				pos = {x = 5, y = 1, a = "BOTTOMLEFT", r = "GJBP_BG", rp = "BOTTOMLEFT"},
-				show = true,
-				clicks = {"LeftButtonUp"},
-				scripts = {
-					{
-						event = "OnClick", 
-						func = function( self, button, down )
-							StopMusic()
-							GJB.gMusicIndex	= GJB.gMusicIndex - 1
-							if GJB.gMusicIndex < 1 then
-								GJB.gMusicIndex = GJB.gMaxMusic
-							end
-							GJB:ProcessInfo()
-						end
-					},
-				},
-			},
-			{
-				ftype = "Button",
-				name = "GJBP_Btn_Play",
-				template = "UIPanelButtonTemplate",
-				text = { show = true, caption = L["CMD_PLAY"], color = {r = 255, g = 255,	b = 255,	a = 1}, fs = "NumberFont_Shadow_Small", halign = "CENTER", valign = "CENTER"},
-				rgba = {r = 123, g = 123, b = 123, a = 0},
-				brgba = {r = 0, g = 0, b = 0, a = 0},
-				dim = {w = 45, h = 17, s = 1},
-				pos = {x = 3, y = 0, a = "BOTTOMLEFT", r = "GJBP_Btn_Prev", rp = "BOTTOMRIGHT"},
-				show = true,
-				clicks = {"LeftButtonUp"},
-				scripts = {
-					{
-						event = "OnClick", 
-						func = function( self, button, down )
-							StopMusic() GJB:ProcessInfo()
-						end
-					},
-				},
-			},
-			{
-				ftype = "Button",
-				name = "GJBP_Btn_Stop",
-				template = "UIPanelButtonTemplate",
-				text = { show = true, caption = L["CMD_STOP"], color = {r = 255, g = 255,	b = 255,	a = 1}, fs = "NumberFont_Shadow_Small", halign = "CENTER", valign = "CENTER"},
-				rgba = {r = 123, g = 123, b = 123, a = 0},
-				brgba = {r = 0, g = 0, b = 0, a = 0},
-				dim = {w = 45, h = 17, s = 1},
-				pos = {x = 3, y = 0, a = "BOTTOMLEFT", r = "GJBP_Btn_Play", rp = "BOTTOMRIGHT"},
-				show = true,
-				clicks = {"LeftButtonUp"},
-				scripts = {
-					{
-						event = "OnClick", 
-						func = function( self, button, down )
-							StopMusic()
-						end
-					},
-				},
-			},
-			{
-				ftype = "Button",
-				name = "GJBP_Btn_Next",
-				template = "UIPanelButtonTemplate",
-				text = { show = true, caption = L["CMD_NEXT"], color = {r = 255, g = 255,	b = 255,	a = 1}, fs = "NumberFont_Shadow_Small", halign = "CENTER", valign = "CENTER"},
-				rgba = {r = 123, g = 123, b = 123, a = 0},
-				brgba = {r = 0, g = 0, b = 0, a = 0},
-				dim = {w = 45, h = 17, s = 1},
-				pos = {x = 3, y = 0, a = "BOTTOMLEFT", r = "GJBP_Btn_Stop", rp = "BOTTOMRIGHT"},
-				show = true,
-				clicks = {"LeftButtonUp"},
-				scripts = {
-					{
-						event = "OnClick", 
-						func = function( self, button, down )
-							StopMusic() GJB:ProcessInfo()
-						end
-					},
-				},
-			},			
-		},
-	},
-}
-
--- ---------------------------------------------
--- Create the default settings for this addon 
--- ---------------------------------------------
-local defaults = { 
-    profile =  {
-		musiclist = {},
-		zonelist = {},
-		shuffle = false,
-		inlinetitle = false,
-		petbattle = true,
-		allmusic = false,
-		chatoutput = true,
-		shareparty = false,
-		allowleadermusic = false,
-		musicplayer = {
-			pos= {
-				a = "CENTER",
-				r = "UIParent",
-				rp = "CENTER",
-				x = 0,
-				y = 0,
-			},
-		},
-		hidemusicplayer = false,
-		minimap = {
-			hide = false,
-		},
-	},
-}
-
---[[=============================================================
-						OnInitialize
-    =============================================================]]
-function GJB:OnInitialize()
-	self.db = LibStub("AceDB-3.0"):New("GarrisonJukeBoxDB", defaults, true)
-	self.db.RegisterCallback(self, "OnProfileChanged", "OnProfileChanged")
-	self.db.RegisterCallback(self, "OnProfileCopied", "OnProfileChanged")
-	self.db.RegisterCallback(self, "OnProfileReset", "OnProfileChanged")
-
-	LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable("GarrisonJukeBoxDB", self.GenerateOptions)
-	LibStub("AceConfig-3.0"):RegisterOptionsTable("GarrisonJukeBox", self.slashcmd, "gjb")
-	
-	local ACD3 = LibStub("AceConfigDialog-3.0")
-	self.optionsFrames = {}
-	self.optionsFrames.JukeBox = ACD3:AddToBlizOptions("GarrisonJukeBoxDB", L["ADDON_NAME"], nil, "JukeBox")
-	self.optionsFrames.Audio = ACD3:AddToBlizOptions("GarrisonJukeBoxDB", L["OPT_AUDIO"], L["ADDON_NAME"], "Audio")
-	self:RegisterModuleOptions("GJBSlashCmd", self.slashcmd, L["ADDON_SLASHCMD"])
-	self:RegisterModuleOptions("Profiles", function() return LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db) end, L["Profiles"])
-	self.optionsFrames.About = ACD3:AddToBlizOptions("GarrisonJukeBoxDB", L["OPT_ABOUT"], L["ADDON_NAME"], "About")
-	
-	self.gMusicIndex = 1
-	self.gMusicIndexIn = 1
-	self.gMusicPlaying = false
-	self.gMaxMusic = 0
-	self.gMaxMusicIn = 0
-	self.gPrevZone = 0
-	self.gErrorPlay = false
-	self.loadTimer = nil
-	self.zoneTimer = nil
-	self.musicTimer = nil
-	self.isPartyLeader = false
-
-	self:makeFrames(musicplayer)
-	local pos = self.db.profile.musicplayer.pos
-	self:setPosition("GJBP_BG", pos)
-	
-	self:CleanupProfileZoneList() -- verifies for invalid entries in the profile zonelist.
-	self:CreateMinimapIcon()
-	
-	-- set minimap show/hide
-	if self.db.profile.minimap.hide == true then
-		
-	else
-	end
-
-	self:Print(L["ADDON_NAME"] .. " " .. self.gVersion .. " " .. L["ADDON_LOADED"])
-	
-	self.OnInitialize = nil
-end
-
-function GJB:RegisterModuleOptions(name, optionTbl, displayName)
-	if moduleOptions then
-		moduleOptions[name] = optionTbl
-	else
-		self.options.args[name] = (type(optionTbl) == "function") and optionTbl() or optionTbl
-	end
-	self.optionsFrames[name] = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("GarrisonJukeBoxDB", displayName, L["ADDON_NAME"], name)
-end
-
-function GJB.GenerateOptions()
-	if not GJB.options then
-		GJB.GenerateOptionsInternal()
-		GJB.GenerateOptionsInternal = nil
-		moduleOptions = nil
-	end
-	return GJB.options
-end
-
--- Option table for the slash command only
-GJB.slashcmd = {
-	type = "group",
-	name = L["ADDON_SLASHCMD"],
-	order = -3,
-	func = function() GJB:ShowConfig() end,
-	args = {
-		intro = {
-			order = 1,
-			type = "description",
-			name = L["ADDON_SLASHCMD_DESC"],
-			cmdHidden = true,
-		},
-		play = {
-			order = 2,
-			type = "execute",
-			name = L["CMD_PLAY"],
-			desc = L["CMD_PLAY_DESC"],
-			func = function() StopMusic() GJB:ProcessInfo() end,
-		},
-		prev = {
-			order = 3,
-			type = "execute",
-			name = L["CMD_PREV"],
-			desc = L["CMD_PREV_DESC"],
-			func = function()
-				StopMusic()
-				GJB.gMusicIndex	= GJB.gMusicIndex - 1
-				if GJB.gMusicIndex < 1 then
-					GJB.gMusicIndex = GJB.gMaxMusic
-				end
-				GJB:ProcessInfo()
-			end,
-		},
-		next = {
-			order = 4,
-			type = "execute",
-			name = L["CMD_NEXT"],
-			desc = L["CMD_NEXT_DESC"],
-			func = function() StopMusic() GJB:ProcessInfo() end,
-		},
-		stop = {
-			order = 5,
-			type = "execute",
-			name = L["CMD_STOP"],
-			desc = L["CMD_STOP_DESC"],
-			func = function() StopMusic() end,
-		},
-		showicon = {
-			order = 6,
-			type = "execute",
-			name = L["CMD_MINIMAP_SHOW"],
-			desc = L["CMD_MINIMAP_SHOW_DESC"],
-			func = function()
-				GJB.db.profile.minimap.hide = false
-				GJB.icon:Show("GarrisonJukeBox")
-			end,
-		},
-		hideicon = {
-			order = 7,
-			type = "execute",
-			name = L["CMD_MINIMAP_HIDE"],
-			desc = L["CMD_MINIMAP_HIDE_DESC"],
-			func = function()
-				GJB.db.profile.minimap.hide = true 
-				GJB.icon:Hide("GarrisonJukeBox")
-			end,
-		},
-		showplayer = {
-			order = 8,
-			type = "execute",
-			name = L["CMD_MINIMAP_HIDE"],
-			desc = L["CMD_MINIMAP_HIDE_DESC"],
-			func = function()
-				GJB.db.profile.hidemusicplayer = false
-				GJB:setVisible("GJBP_BG", true)
-			end,
-		},
-		hideplayer = {
-			order = 9,
-			type = "execute",
-			name = L["TOG_HIDEMUSICPLAYER"],
-			desc = L["TOG_HIDEMUSICPLAYER_DESC"],
-			func = function()
-				GJB.db.profile.hidemusicplayer = true
-				GJB:setVisible("GJBP_BG", false)
-			end,
-		},
-		config = {
-			type = "execute",
-			name = L["CMD_CONFIG"],
-			desc = L["CMD_CONFIG_DESC"],
-			func = function() GJB:ShowConfig() end,
-			guiHidden = true,
-		},
-	},
-}
-
-function GJB.GenerateOptionsInternal()
-	-- Create the options variable to use in the config screen --
-	GJB.options = {
-		name = L["OPT_JUKEBOX_OPTIONS"],
-		handler = GJB,
-		type = "group",
-		args = {
-			JukeBox = {
-				name = L["OPT_JUKEBOX"],
-				desc = L["OPT_JUKEBOX_DESC"],
-				type = "group",
-				order = 1,
-				args = {
-					hdrjukebox = {
-						name = L["SEL_JUKEBOX"],
-						type = "header",
-						order = 1,
-					},
-					expac = {
-						type = "select",
-						name = L["SEL_EXPANSION"],
-						desc = L["SEL_EXPANSION_DESC"],
-						style = "dropdown",
-						values = "GetExpansions",
-						set = function(info, value) GJB.expac = value end,
-						get = "GetExpac",
-						width = "normal",
-						order = 2,
-					},
-					music = {
-						type = "select",
-						name = L["SEL_MUSIC"],
-						desc = L["SEL_MUSIC_DESC"],
-						style = "dropdown",
-						values = "GetCurExpacMusicList",
-						set = function(info, value) GJB.music = value end,
-						get = "GetMusic",
-						width = "normal",
-						order = 3,
-					},
-					musicadd = {
-						type = "execute",
-						name = L["CMD_ADD"],
-						desc = L["CMD_ADD_DESC"],
-						func = function()
-							local xps = GJB:GetExpansions()
-							local xp = xps[GJB:GetExpac()]
-							local mus = GJB:GetCurExpacMusicList()
-							local mu = mus[GJB:GetMusic()]
-							-- TODO[1]: Will we support multiple identical entries?
-							tinsert(GJB.db.profile.musiclist, #GJB.db.profile.musiclist + 1, xp .. "/" .. mu)
-							jukebox = xp .. "/" .. mu
-						end,
-						width = "half",
-						order = 4,
-					},
-					space_musicadd = {name = " ",type = "description",width = "full",fontSize = "small",order = 5,},
-					cmdplaysamplemusic = {
-					-- press multiple times to play next sub-item in list
-						type = "execute",
-						name = L["OPT_PLAYSAMPLE"],
-						desc = L["OPT_PLAYSAMPLE_DESC"],
-						func = function()
-							local xps = GJB:GetExpansions()
-							local xp = xps[GJB:GetExpac()]
-							local mus = GJB:GetCurExpacMusicList()
-							local mu = mus[GJB:GetMusic()]
-							local ft = GJB:MusicListFromJukeBoxItem(xp .. "/" .. mu) -- gets a table of music files to play from musictable[n]
-							
-							-- check if there are sub-items
-							if #ft > 0 then
-								-- check what sub-item we play
-								if GJB.gSamplePlayed ~= GJB.expac .. GJB.music then
-									GJB.gSampleIndex = 1
-									GJB.gSamplePlayed = GJB.expac .. GJB.music
-								else
-									GJB.gSampleIndex = GJB.gSampleIndex + 1
-									if GJB.gSampleIndex > #ft then
-										GJB.gSampleIndex = 1
-									end
-								end
-								
-								-- play music
-								StopMusic()
-								GJB.gMusicPlaying = false
-								GJB:CancelTimer(GJB.musicTimer)
-								PlayMusic(GJB.musictable[GJB.expac][GJB.music].files[GJB.gSampleIndex][1])
-								GJB:Print(L["SAMPLE_MUSIC"] .. xp .. "/" .. mu)
-								GJB:Print(L["SAMPLE_FILE"] .. GJB.musictable[GJB.expac][GJB.music].files[GJB.gSampleIndex][1])
-							end
-						end,
-						width = "normal",
-						order = 6,
-					},
-					cmdstopsound = {
-						type = "execute",
-						name = L["CMD_STOP"],
-						func = function() StopMusic() GJB:ProcessInfo()	end,
-						width = "half",
-						order = 7,
-					},
-					space_stopsound = {name = " ",type = "description",width = "full",fontSize = "small",order = 8,},
-					musiclist = {
-						type = "select",
-						name = L["SEL_JUKEBOX"],
-						desc = L["SEL_JUKEBOX_DESC"],
-						style = "dropdown",
-						values = function() return GJB.db.profile.musiclist	end,
-						set = function(info, value) GJB.jukebox = value	end,
-						get = function(info) return GJB.jukebox	end,
-						width = "double",
-						order = 9,
-					},
-					musicdelete = {
-						type = "execute",
-						name = L["CMD_REMOVE"],
-						desc = L["CMD_REMOVE_DESC"],
-						func = function() tremove(GJB.db.profile.musiclist, GJB.jukebox) end,
-						width = "half",
-						order = 10,
-					},
-					musicdeleteall = {
-						type = "execute",
-						name = L["CMD_REMOVEALL"],
-						desc = L["CMD_REMOVEALL_DESC"],
-						func = function() GJB.db.profile.musiclist = {}	GJB.jukebox = "" end,
-						width = "normal",
-						order = 11,
-					},
-					space_remallmusic = {name = " ",type = "description",width = "full",fontSize = "small",order = 12,},
-					descspaceshuffle = {
-						name = "",
-						type = "description",
-						width = "full",
-						fontSize = "small",
-						order = 13,
-					},
-					shuffle = {
-						type = "toggle",
-						name = L["TOG_SHUFFLE"],
-						desc = L["TOG_SHUFFLE_DESC"],
-						set = function(info, value) GJB.db.profile.shuffle = value end,
-						get = function(info) return GJB.db.profile.shuffle end,
-						width = "normal",
-						order = 14,
-					},
-					inlinetitle = {
-						type = "toggle",
-						name = L["TOG_INLINE"],
-						desc = L["TOG_INLINE_DESC"],
-						set = function(info, value) GJB.db.profile.inlinetitle = value end,
-						get = function(info) return GJB.db.profile.inlinetitle end,
-						width = "normal",
-						order = 14,
-					},
-					petbattle = {
-						type = "toggle",
-						name = L["TOG_PETBATTLE"],
-						desc = L["TOG_PETBATTLE_DESC"],
-						set = function(info, value) GJB.db.profile.petbattle = value end,
-						get = function(info) return GJB.db.profile.petbattle end,
-						width = "normal",
-						order = 15,
-					},
-					allmusic = {
-						type = "toggle",
-						name = L["TOG_ALLMUSIC"],
-						desc = L["TOG_ALLMUSIC_DESC"],
-						set = function(info, value) GJB.db.profile.allmusic = value end,
-						get = function(info) return GJB.db.profile.allmusic end,
-						width = "normal",
-						order = 16,
-					},
-					minimap = {
-						type = "toggle",
-						name = L["CMD_MINIMAP"],
-						desc = L["CMD_MINIMAP_DESC"],
-						set = function(info, value)	
-							GJB.db.profile.minimap.hide = value
-							if value == true then
-								GJB.icon:Hide("GarrisonJukeBox")
-							else
-								GJB.icon:Show("GarrisonJukeBox")
-							end
-						end,
-						get = function(info) return GJB.db.profile.minimap.hide end,
-						order = 17,
-					},
-					chatoutput = {
-						type = "toggle",
-						name = L["CMD_CHATOUTPUT"],
-						desc = L["CMD_CHATOUTPUT_DESC"],
-						set = function(info, value)	GJB.db.profile.chatoutput = value end,
-						get = function(info) return GJB.db.profile.chatoutput end,
-						order = 18,
-					},
-					shareparty = {
-						type = "toggle",
-						name = L["TOG_SHAREPARTY"],
-						desc = L["TOG_SHAREPARTY_DESC"],
-						set = function(info, value) GJB.db.profile.shareparty = value end,
-						get = function(info) return GJB.db.profile.shareparty end,
-						width = "normal",
-						order = 19,
-					},
-					allowleadermusic = {
-						type = "toggle",
-						name = L["TOG_ALLOWLEADERMUSIC"],
-						desc = L["TOG_ALLOWLEADERMUSIC_DESC"],
-						set = function(info, value) GJB.db.profile.allowleadermusic = value end,
-						get = function(info) return GJB.db.profile.allowleadermusic end,
-						width = "normal",
-						order = 20,
-					},
-					hdrselection = {
-						name = L["HDR_ZONES"],
-						type = "header",
-						order = 21,
-					},
-					i1continent = {
-						type = "select",
-						name = L["SEL_CONTINENT"],
-						desc = L["SEL_CONTINENT_DESC"],
-						style = "dropdown",
-						values = "GetContinents",
-						set = function(info, value) GJB.continent = value end,
-						get = "GetContinent",
-						width = "normal",
-						order = 22,
-					},
-					i1zone = {
-						type = "select",
-						name = L["SEL_ZONE"],
-						desc = L["SEL_ZONE_DESC"],
-						style = "dropdown",
-						values = "GetCurContZoneList",
-						set = function(info, value) GJB.zone = value end,
-						get = "GetZone",
-						width = "normal",
-						order = 23,
-					},
-					zoneadd = {
-						type = "execute",
-						name = L["CMD_ADD"],
-						desc = L["CMD_ADDZONE_DESC"],
-						func = function()
-							local cts = GJB:GetContinents()
-							local ct = cts[GJB:GetContinent()]
-							local zns = GJB:GetCurContZoneList()
-							local zn = zns[GJB:GetZone()]
-							-- do not add a double entry
-							local addok = true
-							for i = 1, #GJB.db.profile.zonelist do
-								if GJB.db.profile.zonelist[i] == ct .. "/" .. zn then
-									addok = false
-									break
-								end
-							end
-							
-							if addok == true then
-								tinsert(GJB.db.profile.zonelist, #GJB.db.profile.zonelist + 1, ct .. "/" .. zn)
-								zonebox = ct .. "/" .. zn
-							end
-						end,
-						width = "half",
-						order = 24,
-					},
-					space_zone = {name = " ",type = "description",width = "full",fontSize = "small",order = 22,},
-					zonelist = {
-						type = "select",
-						name = L["SEL_YOUR_ZONES"],
-						desc = L["SEL_YOUR_ZONES_DESC"],
-						style = "dropdown",
-						values = function()	return GJB.db.profile.zonelist end,
-						set = function(info, value)	GJB.zonebox = value	end,
-						get = function(info) return GJB.zonebox	end,
-						width = "double",
-						order = 25,
-					},
-					zonedelete = {
-						type = "execute",
-						name = L["CMD_REMOVE"],
-						desc = L["CMD_REMOVE_DESC"],
-						func = function() tremove(GJB.db.profile.zonelist, GJB.zonebox) end,
-						width = "half",
-						order = 26,
-					},
-					zonedeleteall = {
-						type = "execute",
-						name = L["CMD_REMOVEALL"],
-						desc = L["CMD_REMOVEALL_DESC"],
-						func = function() GJB.db.profile.zonelist = {} GJB.zonebox = ""	end,
-						width = "normal",
-						order = 27,
-					},			
-					space_remallzones = {name = " ",type = "description",width = "full",fontSize = "small",order = 26,},
-					hdrplayer = {
-						name = L["HDR_AUDIOPLAYER"],
-						type = "header",
-						order = 28,
-					},
-					play = {
-						type = "execute",
-						name = L["CMD_PLAY"],
-						func = function() StopMusic() GJB:ProcessInfo() end,
-						width = "half",
-						order = 29,
-					},
-					prev = {
-						type = "execute",
-						name = L["CMD_PREV"],
-						func = function()
-							StopMusic()
-							GJB.gMusicIndex	= GJB.gMusicIndex - 1
-							if GJB.gMusicIndex < 1 then
-								GJB.gMusicIndex = GJB.gMaxMusic
-							end
-							GJB:ProcessInfo()
-						end,
-						width = "half",
-						order = 30,
-					},
-					next = {
-						type = "execute",
-						name = L["CMD_NEXT"],
-						func = function() StopMusic() GJB:ProcessInfo() end,
-						width = "half",
-						order = 31,
-					},
-					stop = {
-						type = "execute",
-						name = L["CMD_STOP"],
-						func = function() StopMusic() end,
-						width = "half",
-						order = 32,
-					},
-					hidemusicplayer = {
-						type = "toggle",
-						name = L["TOG_HIDEMUSICPLAYER"],
-						desc = L["TOG_HIDEMUSICPLAYER_DESC"],
-						set = function(info, value)
-							GJB.db.profile.hidemusicplayer = value
-							GJB:setVisibility("GJBP_BG", not value)
-						end,
-						get = function(info) return GJB.db.profile.hidemusicplayer end,
-						width = "normal",
-						order = 33,
-					},
-				},
-			},
-			Audio = {
-				name = L["OPT_AUDIO"],
-				desc = L["OPT_AUDIO_DESC"],
-				type = "group",
-				order = 2,
-				args = {
-					txtplaysound = {
-						name = L["INP_WOWAUDIOFILE"],
-						type = "input",
-						width = "double",
-						set = function(info, value)	GJB.playsoundfile = value end,
-						get = function(info) return GJB.playsoundfile end,
-						order = 1,
-					},
-					cmdplaysound = {
-						type = "execute",
-						name = L["CMD_PLAY"],
-						func = function()
-							if GJB.doubleslashes == true then
-								local s = "" -- temporary string holding newly created sound filename
-								local i1, i2 = 1
-								local l = strlen(GJB.playsoundfile)
-								-- loop through the filename's characters to find double slashes
-								while i1 <= l do
-									local i2 = strfind(GJB.playsoundfile, "\\\\", i1)
-									if i2 ~= nil then
-										s = s .. strsub(GJB.playsoundfile, i1, i2-1) .. "\\"
-										i1 = i2+2
-									else
-										s = s .. strsub(GJB.playsoundfile, i1)
-										GJB.playsoundfile = s
-										break
-									end
-								end
-							end
-							StopMusic()
-							GJB.gMusicPlaying = false
-							GJB:CancelTimer(GJB.musicTimer)
-							PlayMusic(GJB.playsoundfile)
-							GJB:Print(L["PLAYING"] .. GJB.playsoundfile)
-						end,
-						width = "half",
-						order = 2,
-					},
-					cmdstopsound = {
-						type = "execute",
-						name = L["CMD_STOP"],
-						func = function() StopMusic() GJB:ProcessInfo() end,
-						width = "half",
-						order = 3,
-					},
-					doubleslashes = {
-						type = "toggle",
-						name = L["TOG_SLASHES"],
-						desc = L["TOG_SLASHES_DESC"],
-						set = function(info, value) GJB.doubleslashes = value end,
-						get = function(info) return GJB.doubleslashes end,
-						width = "full",
-						order = 4,
-					},
-				},
-			},
-			About = {
-				name = L["OPT_ABOUT"],
-				desc = "",
-				type = "group",
-				order = 3,
-				args = {
-					desctitle = {
-						name = LTC:setColor(L["ADDON_NAME"] .. " " .. GJB.gVersion .. " - " .. GJB.gCurReleaseDate, LTC_GREEN),
-						type = "description",
-						width = "full",
-						fontSize = "medium",
-						order = 1,
-					},
-					descauthor = {
-						name = LTC:setColor(L["ADDON_AUTHOR"] .. " " .. "Azmaedus", LTC_BLUE),
-						type = "description",
-						width = "full",
-						fontSize = "medium",
-						order = 2,
-					},
-					descslashhdr = {
-						name = "\r" .. L["ABOUT_SLASHCMD_TITLE"],
-						type = "description",
-						width = "full",
-						fontSize = "medium",
-						order = 3,
-					},
-					descslashplay = {
-						name = L["ABOUT_SLASHCMD_CONFIG"] .. L["ABOUT_SLASHCMD_PLAY"] .. L["ABOUT_SLASHCMD_PREV"] .. L["ABOUT_SLASHCMD_NEXT"] .. L["ABOUT_SLASHCMD_STOP"],
-						type = "description",
-						width = "full",
-						fontSize = "small",
-						order = 4,
-					},
-				},
-			},
-		},
-	}
-	
-	for k, v in pairs(moduleOptions) do
-		GJB.options.args[k] = (type(v) == "function") and v() or v
-	end
-
-	-- Add ordering data to the option table generated by AceDBOptions-3.0
-	GJB.options.args.Profiles.order = -2
-end
-
--- function to get a table of all expansion/category names with keys that match the options table
-function GJB:GetExpansions()
-	return {i1wow = EXPANSION_NAME0,i2bc = EXPANSION_NAME1,i3wotlk = EXPANSION_NAME2,i4cata = EXPANSION_NAME3,i4catarevamp = EXPANSION_NAME3 .. L["EXP_REVAMP"],i5mop = EXPANSION_NAME4,i6wod = EXPANSION_NAME5,i7events = L["EXP_WCEVENTS"],}
-end
-
--- function to get a table of all continent/world names with keys that match the options table
-function GJB:GetContinents()
-	return {i1kalimdor = L["KALIMDOR"],i2eastern = L["EASTERNKINGDOMS"],i3outland = L["OUTLAND"],i4north = L["NORTHREND"],i5cata = L["CATACLYSM"],i6pandaria = L["PANDARIA"],i7draenor = L["DRAENOR"],}
-end
-
--- options table functions that may be called from more than one component
-function GJB:GetCurExpacMusicList()
-	local tbl = self.musictable[self:GetExpac()]
-	local t = {}
-	for k, v in pairs(tbl) do
-		tinsert(t, k, v["name"])
-	end
-	return t
-end
-
--- options table functions that may be called from more than one component
-function GJB:GetCurContZoneList()
-	local tbl = self.zonetable[self:GetContinent()]
-	local t = {}
-	for k, v in ipairs(tbl) do
-		tinsert(t, k, v[1])
-	end
-	return t
-end
-
-function GJB:GetExpac(info) return GJB.expac end
-function GJB:GetMusic(info) return GJB.music end
-function GJB:GetContinent(info) return GJB.continent end
-function GJB:GetZone(info) return GJB.zone end
-
-function GJB:GetZones()
-	local tbl = {}
-	for i = 1, #self.zonetable do
-		tinsert(tbl, self.zonetable[i][1])
-	end
-	return tbl
-end
-
-function GJB:ShowConfig()
-	-- Open the profiles tab before, so the menu expands
-	InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.Profiles)
-	InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.JukeBox)
-end
-
---[[=============================================================
-						OnEnable
-    =============================================================]]
-function GJB:OnEnable()
-	self:RegisterEvent("PLAYER_ENTERING_WORLD", "OnPEWEvent")
-	self:RegisterEvent("PET_BATTLE_OPENING_START", "OnPetBattleStart")
-	self:RegisterEvent("PET_BATTLE_OVER", "OnPetBattleEnd")
-	self:RegisterEvent("ZONE_CHANGED_NEW_AREA", "OnZoneChangedNewArea")
-	self:RegisterEvent("ZONE_CHANGED_INDOORS", "OnZoneChangedIndoors")
-	self:RegisterEvent("ZONE_CHANGED", "OnZoneChanged")
-	self:RegisterEvent("GROUP_ROSTER_UPDATE", "OnJoinParty")
-
-	-- Register callbacks for inter-addon comms
-	self:RegisterComm(COMM_PREFIX .. "ReqVersion", "OnBuddyReqVersion") 	-- Sends requesters version and name-realm to all party members
-	self:RegisterComm(COMM_PREFIX .. "SentVersion", "OnBuddySentVersion") 	-- Sends version back to requester
-	self:RegisterComm(COMM_PREFIX .. "GetMusic", "OnBuddyListenMusic")		-- Get music sent by leader
-end
-
---[[=============================================================
-						OnDisable
-    =============================================================]]
-function GJB:OnDisable()
-	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-	self:UnregisterEvent("PET_BATTLE_OPENING_START")
-	self:UnregisterEvent("PET_BATTLE_OVER")
-	self:UnregisterEvent("ZONE_CHANGED_NEW_AREA")
-	self:UnregisterEvent("ZONE_CHANGED_INDOORS")
-	self:UnregisterEvent("ZONE_CHANGED")
-	self:UnregisterEvent("GROUP_ROSTER_UPDATE")
-end
-
--- -------------------------------------------
--- Events
--- -------------------------------------------
--- TODO: implement a blacklist to avoid asking the same players in the group that you already asked this group session.
-function GJB:OnJoinParty(event, ...)
-	if IsInRaid() then return end -- cannot be in a raid
-	if not IsInGroup() then return end -- must be in a group
-	
-	local temp = {}
-	local found = false
-	-- build list of current group members
-	local n = GetNumGroupMembers()
-	for i=1,n-1 do -- n-1 because there are 4 members + "player" (you)
-		local name = GetUnitName("party"..i, true)
-		for y=1,#self.BlackList do
-			if self.BlackList[y] == name then
-				found = true
-				break
-			end
-		end
-		
-		if found == false then
-			table.insert(temp, name)
-		end
-	end
-
-	-- loop through the tables and send messages to query for version only if not already done this login session
-	if GJB.gOODShouted == false then
-		if table.getn(temp) > 0 then
-			local t = {}
-			local s = self:Serialize(t)
-			for i=1,#temp do
-				if GJB.gOODShouted == true then return
-				else
-					--print("Sent version request to: " .. temp[i])
-					self:SendCommMessage(COMM_PREFIX.."ReqVersion", s, "WHISPER", temp[i])
-				end
-			end
-		end
-	end
-	self.Party = temp
-end
-
--- localver is the current version of the requester, remotever is the one being tested against(the one received from another player)
-function GJB:isVersionOOD(localver, remotever)
-	for i=1,5 do
-		if localver[i] < remotever[i] then
-			return true
-		end
-	end
-	
-	return false
-end
-
-function GJB:sendMusicToParty(m, l)
-	local n = GetNumGroupMembers()
-	if n > 1 and n <= 5 then
-		local t = { music = m, sec = l }
-		local s = self:Serialize(t)
-		for u=2,n do
-			local name = GetUnitName("party"..u-1)
-			if name or name ~= "" then
-				self:SendCommMessage(COMM_PREFIX.."GetMusic", s, "WHISPER", name)
-			end
-		end
-	end
-end
-
---[[=============================================================
-					Inter-Addon Communications
-    =============================================================]]
--- only can be received from the party leader. Tells other party members what music the leader is currently playing
-function GJB:OnBuddyListenMusic(prefix, message, dist, sender)
-	-- make sure the addon only computes messages from GJB and in the WHISPER channel and that the values are ok to process
-	if prefix ~= COMM_PREFIX .. "GetMusic" and dist ~= "WHISPER" then return
-	elseif sender == nil or sender == "" then return
-	elseif message == nil or message == "" then return
-	else
-		if self.db.profile.allowleadermusic and UnitIsGroupLeader("player") == false then
-			-- only play the music from the leader if you are in one of your selected zones
-			self.gCurZoneID = GetCurrentMapAreaID()
-			if self:IsInZoneList(self.gCurZoneID) then
-				local success, o = self:Deserialize(message)
-				if success == false then return -- Failure
-				else
-					self:CancelTimer(self.musicTimer)
-					-- stop and play
-					StopMusic()
-					PlayMusic(t["music"])
-					
-					if GJB.db.profile.chatoutput then
-						self:Print(L["PLAYING"] .. " " .. t["music"] .. " " .. "from" .. " " .. sender)
-					end
-					
-					gMusicPlaying = true
-					self.musicTimer = self:ScheduleTimer("TimerEventMusic", t["sec"])
-				end
-			end
-		end
-	end
-end
-	
--- Receive a request to send the version info to another party member
-function GJB:OnBuddyReqVersion(prefix, message, dist, sender)
-	-- make sure the addon only computes messages from GJB and in the WHISPER channel and that the values are ok to process
-	if prefix ~= COMM_PREFIX .. "ReqVersion" and dist ~= "WHISPER" then return
-	elseif sender == nil or sender == "" then return
-	else
-		local t = { version = self.gVersionID }
-		local s = self:Serialize(t)
-		self:SendCommMessage(COMM_PREFIX.."SentVersion", s, "WHISPER", sender)
-	end
-end
-
--- Receive a message with a versionID. Compare it to your own and if you are out-of-date, print to chat pane
-function GJB:OnBuddySentVersion(prefix, message, dist, sender)
-	-- make sure the addon only computes messages from GJB and in the WHISPER channel
-	if prefix ~= COMM_PREFIX .. "SentVersion" and dist ~= "WHISPER" then return
-	elseif sender == nil or sender == "" or message == nil or message == "" then return
-	else
-		local success, o = self:Deserialize(message)
-		if success == false then return -- Fail
-		else
-			if o["version"] == nil or o["version"] == "" then return -- Fail
-			else
-				if self:isVersionOOD(self.gVersionID, o["version"]) then
-					self:Print(LTC:setColor( L["ADDON_OUT_OF_DATE"], LTC_RED) .. " " .. o["version"])
-					GJB.gOODShouted = true
-				else
-					-- add to blacklist
-					table.insert(self.BlackList, sender) 
-				end
-			end
-		end
-	end
-end
-
--- -------------------------------------------
--- Events
--- -------------------------------------------
-function GJB:OnProfileChanged(event, database, newProfileKey)
-	db = database.profile
-	self.db.profile.musiclist = db.musiclist
-	self.db.profile.zonelist = db.zonelist
-	self.db.profile.shuffle = db.shuffle
-	self.db.profile.petbattle = db.petbattle
-	self.db.profile.allmusic = db.allmusic
-	self.db.profile.enabled = db.enabled
-	self.db.profile.minimap.hide = db.minimap.hide
-	self.db.profile.musicplayer = db.musicplayer
-
-	--LFX:makeFrames(musicplayer)
-	local pos = self.db.profile.musicplayer.pos
-	self:setPosition("GJBP_BG", pos)
-
-	if self.db.profile.hidemusicplayer == true then
-		self:setVisibility("GJBP_BG", false)
-	else
-		self:setVisibility("GJBP_BG", true)
-	end
-
-	if self.db.profile.minimap.hide == true then
-		self.icon:Hide("GarrisonJukeBox")
-	else
-		self.icon:Show("GarrisonJukeBox")
-	end
-	
-	self:CancelTimer(self.musicTimer)
-	self.loadTimer = self:ScheduleTimer("TimerLoaded", ON_LOAD_TIMER)
-end
-
-function GJB:OnPEWEvent(event, ...)
-	--self:Print("OnPEWEvent fired!")
-	StopMusic()
-	self.gMusicPlaying = false
-	self.gPrevZone = GetCurrentMapAreaID()
-	
-	if self.db.profile.minimap.hide then
-		self.icon:Hide("GarrisonJukeBox")
-	else
-		self.icon:Show("GarrisonJukeBox")
-	end
-
-	self.loadTimer = self:ScheduleTimer("TimerLoaded", ON_LOAD_TIMER)
-end
-function GJB:TimerLoaded()
-	--self:Print("TimerEventLoaded fired!" )
-	self:CancelTimer(self.loadTimer)
-	self.gCurZoneID = GetCurrentMapAreaID()
-	self:ProcessInfo()
-end
-
-function GJB:TimerEvent()
-	--self:Print("TimerEvent fired!")
-	self.gCurZoneID = GetCurrentMapAreaID() 
-	if self.gPrevZone ~= self.gCurZoneID or self.gErrorPlay == true then
-		if self:IsInZoneList(self.gPrevZone) == true and self:IsInZoneList(self.gCurZoneID) == true then
-		else
-			self.gPrevZone = self.gCurZoneID
-			self.gErrorPlay = false
-			self:ProcessInfo()
-		end
-	end
-end
-
-function GJB:TimerEventPetBattle()
-	--self:Print("TimerEvent fired!")
-	self:ProcessInfo()
-end
-
-function GJB:TimerEventMusic()
-	--self:Print("TimerEvent fired!")
-	self:CancelTimer(self.zoneTimer)
-	self.gCurZoneID = GetCurrentMapAreaID()
-	self:ProcessInfo()
-end
-
-function GJB:OnZoneChanged(event, ...)
-	self.zoneTimer = self:ScheduleTimer("TimerEvent", ON_ZONE_TIMER)
-	--self:Print("OnZoneChanged:" .. gCurZoneID)
-end
-
-function GJB:OnZoneChangedIndoors(event, ...)
-	self.zoneTimer = self:ScheduleTimer("TimerEvent", ON_ZONE_TIMER)
-	--self:Print("OnZoneChangedIndoors:" .. gCurZoneID)
-end
-
-function GJB:OnZoneChangedNewArea(event, ...)
-	self.zoneTimer = self:ScheduleTimer("TimerEvent", ON_ZONE_TIMER)
-	--self:Print("OnZoneChangedNewArea:" .. gCurZoneID)
-end
-
-function GJB:OnPetBattleStart(event, ...)
-	if self:IsInZoneList(self.gCurZoneID) then
-		self.gPetBattleEnabled = true
-		self:ProcessInfo()
-	end
-end
-
-function GJB:OnPetBattleEnd(event, ...)
-	if self:IsInZoneList(self.gCurZoneID) then
-		self.gPetBattleEnabled = false
-		self.zoneTimer = self:ScheduleTimer("TimerEventPetBattle", ON_PETBATTLE_TIMER)
-	end
-end
-
--- -------------------------------------------
--- function to sort a musictable
--- -------------------------------------------
-function GJB:SortMusicTable(tbl)
-	for _, v in pairs(tbl) do
-		table.sort(v, function(a,b) return a["name"] < b["name"] end)
-	end
-	return tbl
-end
-
--- -------------------------------------------
--- function to sort a zonetable
--- -------------------------------------------
-function GJB:SortZoneTable(tbl)
-	for _, v in pairs(tbl) do
-		table.sort(v, function(a,b) return a[1] < b[1] end)
-	end
-	return tbl
-end
-
--- -------------------------------------------
--- function to set the musictable from musictable.lua
--- -------------------------------------------
-function GJB:SetMusicTable(tbl)
-	-- sort titles alphabetically ASC ( A --> Z )
-	 self.musictable = self:SortMusicTable(tbl)
-end
-
--- -------------------------------------------
--- function to set the zonetable from zonetable.lua
--- -------------------------------------------
-function GJB:SetZoneTable(tbl)
-	-- sort zones alphabetically ASC ( A --> Z )
-	 self.zonetable = self:SortZoneTable(tbl)
-end
-
--- -------------------------------------------
--- function to verify if supplied zone is a valid entry for a profile zonelist
--- -------------------------------------------
-function GJB:IsZoneValid(s)
-	-- find continent
-	local b = strfind(s, "/") -- slash
-	local ns = strsub(s, 1, b-1) -- continent
-	local cns = self:GetContinents()
-	local cni = table_invert(cns)
-	local idx = cni[ns]
-	if idx ~= nil then
-		-- find zone
-		ns = strsub(s, b+1)
-		for _, v in ipairs(self.zonetable[idx]) do
-			if v[1] == ns then
-				return true
-			end
-		end
-	end
-	return false
-end
-
--- -------------------------------------------
--- function to clean up the profile zonelist for invalid entries
--- -------------------------------------------
-function GJB:CleanupProfileZoneList()
-	for i = 1, #self.db.profile.zonelist do
-		if self:IsZoneValid(self.db.profile.zonelist[i]) == false then
-			
-			-- remove entry
-			if GJB.db.profile.chatoutput then
-				self:Print(self.db.profile.zonelist[i] .. L["ADDON_REMOVEZONE"])
-			end
-			tremove(self.db.profile.zonelist, i)
-		end
-	end
-end
-
--- -------------------------------------------
--- function called to determine if music needs to be played or stopped
--- -------------------------------------------
-function GJB:ProcessInfo()
-	local playstate = false
-	--self:Print("ProcessInfo gCurZoneID: " .. tostring(gCurZoneID))
-	if self:IsInZoneList(self.gCurZoneID) then
-		if self.gPetBattleEnabled == true then
-			if self.db.profile.petbattle == false then
-				playstate = true
-			end
-		else
-			playstate = true
-		end
-	end
-	
-	if playstate == true then
-		self.gMaxMusic = table.getn(self.db.profile.musiclist)
-		if self.gMaxMusic > 0 then
-			self:PlayMusicList()
-		end
-	elseif self.gMusicPlaying == true then
-		StopMusic()
-		self.gMusicPlaying = false
-		self:CancelTimer(self.musicTimer)
-	end
-end
-
--- gets the zone name by id
-function GJB:GetZoneNameByID(id)
-	for k, v in pairs(self.zonetable) do
-		for _, v2 in ipairs(v) do
-			if v2[2] == id then
-				return self:GetContinents()[k] .. "/" .. v2[1]
-			end
-		end
-	end
-	return 0
-end
-
--- verifies if the submitted zone name is in the selected zones (zonelist)
-function GJB:IsInZoneList(id)
-	for _, v in ipairs(self.db.profile.zonelist) do
-		if v == self:GetZoneNameByID(id) then
-			return true
-		end
-	end
-	return false
-end
-
--- -------------------------------------------
--- Table Invert for query of key
--- -------------------------------------------
-function table_invert(t)
-   local s={}
-   for k,v in pairs(t) do
-     s[v]=k
-   end
-   return s
-end
-
--- -------------------------------------------
--- break apart the musiclist item to find out what file to play in the musicfile table
--- returns a table representing the music info
--- -------------------------------------------
-function GJB:MusicListFromJukeBoxItem(s)
-	local idx = 0
-	
-	-- get the expansion key
-	local b = strfind(s, "/")
-	local ns = strsub(s, 1, b-1)
-	local xp = self:GetExpansions() -- 
-	local xpi = table_invert(xp)
-	idx = xpi[ns]
-
-	-- get music info
-	ns = strsub(s, b+1)
-	local mt = self.musictable[idx] -- get table of music infos relative to the expansion
-	
-	-- loop through tables to find the music info
-	for k, v in ipairs(mt) do
-		if v["name"] == ns then
-			return v["files"]
-		end
-	end
-end
-
--- -------------------------------------------
--- function to play an item in the musiclist table
--- -------------------------------------------
-function GJB:PlayMusicList()
-	if self.db.profile.allmusic == true then -- disregard the jukebox list and play a random file
-		self:CancelTimer(self.musicTimer)
-		-- play a random song from the musictable
-		local xpkeys = {"i1wow","i2bc","i3wotlk","i4cata","i4catarevamp","i5mop","i6wod","i7events"}
-		local xps = self:GetExpansions()
-		local xpi = xpkeys[math.random(1, #xpkeys)] -- random key
-		local mui = math.random(1, #self.musictable[xpi])
-		local muii = math.random(1, #self.musictable[xpi][mui].files) 
-		
-		-- stop and play
-		StopMusic()
-		PlayMusic(self.musictable[xpi][mui].files[muii][1])
-		local ptime = self.musictable[xpi][mui].files[muii][2]
-		local mins = floor(ptime/60)
-		local secs = ptime - (mins * 60)
-		
-		if GJB.db.profile.chatoutput then
-			self:Print(L["PLAYING"] .. xps[xpi] .. "/" .. self.musictable[xpi][mui]["name"] .. " " .. mins .. ":" .. fmt("%02d", secs))
-		end
-		
-		gMusicPlaying = true
-		self.musicTimer = self:ScheduleTimer("TimerEventMusic", self.musictable[xpi][mui].files[muii][2])
-	else
-		self.gErrorPlay = false
-		self:CancelTimer(self.musicTimer)
-		
-		-- check if the list has shrunk since last pass and index is greater than number of list items
-		if self.gMusicIndex > self.gMaxMusic then
-			self.gMusicIndex = self.gMaxMusic
-		end
-		
-		-- check if the playlist is in shuffle mode
-		if self.db.profile.shuffle == true then
-			if self.gMusicIndexPrev == 0 or self.gMaxMusic == 1 then -- just random it! first pass or only 1 item in list
-				-- make sure we don't random a single item
-				if self.gMaxMusic > 1 then
-					self.gMusicIndex = math.random(1, self.gMaxMusic)
-				end
-			else
-				-- check if inlinetitle is enabled. If it is, play next mp3 in title
-				if self.db.profile.inlinetitle == true then
-					-- test if there's a next sub-item in title to play
-					if self.gMusicIndexIn == nil then
-						self.gMusicIndexIn = 1
-					elseif self.gMusicIndexIn < table.getn(self:MusicListFromJukeBoxItem(self.db.profile.musiclist[self.gMusicIndex])) then
-						self.gMusicIndexIn = self.gMusicIndexIn + 1
-					else
-						-- random title and set musicindexin to 0
-						while self.gMusicIndex == self.gMusicIndexPrev do
-							self.gMusicIndex = math.random(1, self.gMaxMusic)
-						end
-						self.gMusicIndexIn = 1
-					end
-				else
-					while self.gMusicIndex == self.gMusicIndexPrev do
-						self.gMusicIndex = math.random(1, self.gMaxMusic)
-					end
-				end
-			end
-			self.gMusicIndexPrev = self.gMusicIndex
-		end
-		
-		-- get table of music files to play
-		local mli = self.db.profile.musiclist[self.gMusicIndex] -- get the string representing what title should be playing
-		if mli == nil then
-			self.gErrorPlay = PLAYERROR_INV_STRING
-		end
-
-		-- check for errors
-		if (mli ~= nil or mli ~= "") and self.gErrorPlay == false then
-			local ft = self:MusicListFromJukeBoxItem(mli) -- gets a table of sub-items to play from musictable
-			-- there is sometimes an error when ft == nil. I have not been able to debug this one as it doesn't happen often.
-			-- I will try to detect the title's file list against nil and retry it a few seconds later
-			if ft ~= nil then
-				if self.db.profile.shuffle == true then 
-					if self.db.profile.inlinetitle == false then
-						-- get random index of sub-item to play
-						self.gMaxMusicIn = table.getn(ft) -- get number of sub-items
-						self.gMusicIndexIn = math.random(1, self.gMaxMusicIn)
-					end
-				end
-				
-				local info = ft[self.gMusicIndexIn]
-					
-				-- stop and play
-				StopMusic()
-				
-				-- check if we send music to other party members
-				if self.db.profile.shareparty and UnitIsGroupLeader("player") then
-					self:sendMusicToParty(info[1], info[2]+2) -- I'm adding 2 secs to make sure that the leader has time to send next tune
-				end
-								
-				PlayMusic(info[1])
-				local ptime = info[2]
-				local mins = floor(ptime/60)
-				local secs = ptime - (mins * 60)
-				
-				if GJB.db.profile.chatoutput then
-					self:Print(L["PLAYING"] .. "#" .. self.gMusicIndex .. " - " .. self.db.profile.musiclist[self.gMusicIndex] .. " (" .. self.gMusicIndexIn .. ") " .. mins .. ":" .. fmt("%02d", secs))
-				end
-				
-				self.gMusicPlaying = true
-				self.musicTimer = self:ScheduleTimer("TimerEventMusic", info[2])
-
-				-- increment index after item is playing
-				if self.gMusicIndex == self.gMaxMusic then
-					self.gMusicIndex = 1
-				elseif self.db.profile.shuffle == false then
-					self.gMusicIndex = self.gMusicIndex + 1
-				end
-			else
-				self.gErrorPlay = PLAYERROR_INV_TITLE
-			end
-		else
-			self.gErrorPlay = PLAYERROR_INV_STRING
-		end
-		
-		-- Do timer based on error type
-		if self.gErrorPlay == PLAYERROR_INV_TITLE then
-			if GJB.db.profile.chatoutput then
-				self:Print(L["ADDON_TITLENOTFOUND"] .. self.db.profile.musiclist[self.gMusicIndex] .. "[" .. self.gMusicIndex .. "]" .. "\r" .. L["ADDON_FILEREMOVEMSG"])
-			end
-			
-			tremove(self.db.profile.musiclist, self.gMusicIndex)
-			self.zoneTimer = self:ScheduleTimer("TimerEvent", ON_ZONE_TIMER) -- set timer to play next in list
-		elseif self.gErrorPlay == PLAYERROR_INV_STRING then
-			if GJB.db.profile.chatoutput then
-				self:Print(L["ADDON_SEARCHFAILED"] .. self.gMusicIndex)
-			end
-			
-			self.zoneTimer = self:ScheduleTimer("TimerEvent", ON_ZONE_TIMER) -- set timer to play next in list
-		end
-	end
-end
+-- History
+GJB.historypool = {}						-- Pool for holding created button frames for the history list

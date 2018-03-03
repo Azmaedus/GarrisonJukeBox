@@ -1,0 +1,42 @@
+local GJB = LibStub("AceAddon-3.0"):GetAddon("GarrisonJukeBox")
+local L = GJB.L -- local L = LibStub("AceLocale-3.0"):GetLocale("GarrisonJukeBox")
+
+local zones = {
+	{L["ZONE_RAID_Blackwing Lair"], 755},
+	{L["ZONE_RAID_Molten Core"], 696},
+	{L["ZONE_RAID_Ruins of Ahn'Qiraj"], 717},
+	{L["ZONE_RAID_Temple of Ahn'Qiraj"], 766},
+	{L["ZONE_RAID_Black Temple"], 796},
+	{L["ZONE_RAID_Gruul's Lair"], 776},
+	{L["ZONE_RAID_Hyjal Summit"], 775},
+	{L["ZONE_RAID_Karazhan"], 799},
+	{L["ZONE_RAID_Magtheridon's Lair"], 779},
+	{L["ZONE_RAID_Serpentshrine Cavern"], 780},
+	{L["ZONE_RAID_Sunwell Plateau"], 789},
+	{L["ZONE_RAID_The Eye"], 782},
+	{L["ZONE_RAID_Icecrown Citadel"], 604},
+	{L["ZONE_RAID_Naxxramas"], 535},
+	{L["ZONE_RAID_Onyxia's Lair"], 718},
+	{L["ZONE_RAID_The Eye of Eternity"], 527},
+	{L["ZONE_RAID_The Obsidian Sanctum"], 531},
+	{L["ZONE_RAID_The Ruby Sanctum"], 609},
+	{L["ZONE_RAID_Trial of the Crusader"], 543},
+	{L["ZONE_RAID_Ulduar"], 529},
+	{L["ZONE_RAID_Vault of Archavon"], 532},
+	{L["ZONE_RAID_Baradin Hold"], 752},
+	{L["ZONE_RAID_Blackwing Descent"], 754},
+	{L["ZONE_RAID_Dragon Soul"], 824},
+	{L["ZONE_RAID_Firelands"], 800},
+	{L["ZONE_RAID_The Bastion of Twilight"], 758},
+	{L["ZONE_RAID_Throne of the Four Winds"], 773},
+	{L["ZONE_RAID_Heart of Fear"], 897},
+	{L["ZONE_RAID_Mogu'shan Vaults"], 896},
+	{L["ZONE_RAID_Siege of Orgrimmar"], 953},
+	{L["ZONE_RAID_Terrace of Endless Spring"], 886},
+	{L["ZONE_RAID_Throne of Thunder"], 930},
+	{L["ZONE_RAID_HIGHMAUL"], 994},
+	{L["ZONE_RAID_BLACKROCKFOUNDRY"], 988},
+	{L["ZONE_RAID_HELLFIRE"], 1026},
+}
+
+GJB.zonetable[GJB.ZONE_RAIDS] = zones
