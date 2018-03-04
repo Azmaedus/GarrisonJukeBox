@@ -229,6 +229,9 @@
 	
 	03-03-2017 - 2.0.2.5	Changed interface version to 70100
 									
+	03-03-2018 - 2.0.2.6	Changed interface version to 70300
+										Added some Legion Zones & Music
+
 	Known Bugs
 	--------------------
 	- The alignment of text in the selected sample music is aligned to the right but should be left. This is caused by Ace3 GUI; not a bug.
@@ -242,8 +245,8 @@ GJB.L = L
 
 -- metadata
 GJB.gVersion = GetAddOnMetadata("GarrisonJukeBox", "Version")
-GJB.gVersionID = {2,0,2,5,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
-GJB.gCurReleaseDate = "03/03/2017"
+GJB.gVersionID = {2,0,2,6,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
+GJB.gCurReleaseDate = "03/04/2018"
 
 -- table to hold all music and zone and music player data
 GJB.musictable = {}

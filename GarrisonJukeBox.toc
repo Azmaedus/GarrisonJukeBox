@@ -1,11 +1,11 @@
-## Interface: 70100
+## Interface: 70300
 ## Title: Garrison JukeBox
 ## Notes: A jukebox for playing wow embedded music.
 ## Author: Azmaedus
-## Version: v2.0.2.5 release
+## Version: v2.0.2.6 release
 ## SavedVariables: GarrisonJukeBoxDB, GarrisonJukeBoxLDBIconDB
 ## License: GPLv2
-## X-Curse-Packaged-Version: v2.0.2.5 release
+## X-Curse-Packaged-Version: v2.0.2.6 release
 ## X-Curse-Project-Name: Garrison JukeBox
 ## X-Curse-Project-ID: garrisonjukebox
 ## X-Curse-Repository-ID: wow/garrisonjukebox/mainline

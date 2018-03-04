@@ -20,6 +20,7 @@ local zones = {
 	{L["ZONE_SCEN_Theramore's Fall A"], 906},
 	{L["ZONE_SCEN_Theramore's Fall H"], 851},
 	{L["ZONE_SCEN_Unga Ingoo"], 882},
+	{L["ZONE_SCEN_The Deaths of Chromie"], 1177},
 }
 
 GJB.zonetable[GJB.ZONE_SCENARIOS] = zones

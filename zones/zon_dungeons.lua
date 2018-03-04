@@ -80,6 +80,18 @@ local zones = {
 	{L["ZONE_DUNGEON_Skyreach"], 989},
 	{L["ZONE_DUNGEON_The Everbloom"], 1008},
 	{L["ZONE_DUNGEON_Upper Blackrock Spire"], 995},
+	{L["ZONE_DUNGEON_Black Rook Hold"], 1081},
+	{L["ZONE_DUNGEON_Cathedral of Eternal Night"], 1146},
+	{L["ZONE_DUNGEON_Court of Stars"], 1087},
+	{L["ZONE_DUNGEON_Darkheart Thicket"], 1067},
+	{L["ZONE_DUNGEON_Eye of Azshara"], 1046},
+	{L["ZONE_DUNGEON_Halls of Valor"], 1041},
+	{L["ZONE_DUNGEON_Maw of Souls"], 1042},
+	{L["ZONE_DUNGEON_Neltharion's Lair"], 1065},
+	{L["ZONE_DUNGEON_Return to Karazhan"], 1115},
+	{L["ZONE_DUNGEON_The Arcway"], 1079},
+	{L["ZONE_DUNGEON_Vault of the Wardens"], 1045},
+	{L["ZONE_DUNGEON_Violet Hold"], 1066},
 }
 
 GJB.zonetable[GJB.ZONE_DUNGEONS] = zones
