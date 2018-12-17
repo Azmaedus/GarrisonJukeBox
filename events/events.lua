@@ -227,6 +227,7 @@ function GJB:OnInitialize()
 		{id = GJB.EXP_EVENTS, name = L["EXP_WCEVENTS"]	},
 		{id = GJB.EXP_BLIZZJB, name = L["EXP_BLIZZJB"]},
 		{id = GJB.EXP_LEGION, name = EXPANSION_NAME6},
+		{id = GJB.EXP_BFA, name = EXPANSION_NAME7},
 	}
 
 	GJB.Continents = 
@@ -243,6 +244,7 @@ function GJB:OnInitialize()
 		{id = GJB.ZONE_BATTLEGROUNDS, name = L["BATTLEGROUNDS"]},
 		{id = GJB.ZONE_SCENARIOS, name = L["SCENARIOS"]},
 		{id = GJB.ZONE_LEGION, name = L["LEGION"]},
+		{id = GJB.ZONE_BFA, name = L["BFA"]},
 	}
 	
 	self.expac = 1
@@ -387,7 +389,7 @@ function GJB:OnPEWEvent(event, ...)
 		StopMusic()
 		self:SetNowPlayingText( "..." )
 		self.gMusicPlaying = false
-		self.gPrevZone = GetCurrentMapAreaID()
+		self.gPrevZone = C_Map.GetBestMapForUnit("player")
 		
 		local icon = LibStub("LibDBIcon-1.0", true)
 		if self.db.profile.minimap.hide then
@@ -427,15 +429,15 @@ function GJB:TimerLoaded()
 	--self:Print("TimerEventLoaded fired!" )
 	GJB.PEWTriggered = false
 	self:CancelTimer(self.loadTimer)
-	self.gCurZoneID = GetCurrentMapAreaID()
+	self.gCurZoneID = C_Map.GetBestMapForUnit("player")
 	self:ProcessInfo()
 end
 
 function GJB:TimerEvent()
 	--self:Print("TimerEvent fired!")
-	--GJB:Print("Zone: " .. GetCurrentMapAreaID() ) 
+	--GJB:Print("Zone: " .. C_Map.GetBestMapForUnit("player") ) 
 	if GJB.PEWTriggered == false then
-		self.gCurZoneID = GetCurrentMapAreaID() 
+		self.gCurZoneID = C_Map.GetBestMapForUnit("player") 
 		
 		-- ***********************
 		-- BLIZZARD MUSICBOX BUG FIX
@@ -492,7 +494,7 @@ end
 function GJB:TimerEventMusic()
 	--self:Print("TimerEvent fired!")
 	self:CancelTimer(self.zoneTimer)
-	self.gCurZoneID = GetCurrentMapAreaID()
+	self.gCurZoneID = C_Map.GetBestMapForUnit("player")
 	self:ProcessInfo()
 end
 
@@ -501,15 +503,15 @@ end
 -- -------------------------------------------
 function GJB:OnZoneChanged(event, ...)
 	self.zoneTimer = self:ScheduleTimer("TimerEvent", ON_ZONE_TIMER)
-	--print("OnZoneChanged:" .. tostring(GetCurrentMapAreaID()))
+	--print("OnZoneChanged:" .. tostring(C_Map.GetBestMapForUnit("player")))
 end
 
 function GJB:OnZoneChangedIndoors(event, ...)
 	self.zoneTimer = self:ScheduleTimer("TimerEvent", ON_ZONE_TIMER)
-	--print("OnZoneChangedIndoors:" .. tostring(GetCurrentMapAreaID()))
+	--print("OnZoneChangedIndoors:" .. tostring(C_Map.GetBestMapForUnit("player")))
 end
 
 function GJB:OnZoneChangedNewArea(event, ...)
 	self.zoneTimer = self:ScheduleTimer("TimerEvent", ON_ZONE_TIMER)
-	--print("OnZoneChangedNewArea:" .. tostring(GetCurrentMapAreaID()))
+	--print("OnZoneChangedNewArea:" .. tostring(C_Map.GetBestMapForUnit("player")))
 end

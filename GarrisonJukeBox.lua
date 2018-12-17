@@ -231,11 +231,20 @@
 									
 	03-03-2018 - 2.0.2.6	Changed interface version to 70300
 										Added some Legion Zones & Music
+	
+	08-13-2018 - 2.1.0.0	Changed interface version to 80000
+										Added zone translation table for patch 8.0.1 new zone handling.
+										Added BFA music
+										Changed GetZoneID calls to new C_Map.GetBestMapForUnit("player")
+	
+	12-17-2018 - 2.1.0.1	Changed interface version to 80100
+										Added BFA zones (new raids and battlegrounds to come...)
 
-	Known Bugs
-	--------------------
+	Known Bugs/Issues
+	-------------------------
 	- The alignment of text in the selected sample music is aligned to the right but should be left. This is caused by Ace3 GUI; not a bug.
-	- Sometimes when changing from a zone not on the zonelist to a zone that is, GJB will play 2 consecutive songs. Possibly fixed but needs additional testing.
+	- Sometimes when changing from a zone not on the zonelist to a zone that is, GJB will play 2 consecutive songs. Possibly fixed but needs additional testing. FIXED!
+	- Enable/Disable checkbox in settings for the addon seems not to function properly.
 ]]
 
 -- Load the Ace libraries --
@@ -243,10 +252,13 @@ local GJB = LibStub("AceAddon-3.0"):NewAddon("GarrisonJukeBox", "AceConsole-3.0"
 local L = LibStub("AceLocale-3.0"):GetLocale("GarrisonJukeBox")
 GJB.L = L
 
+-- DEBUG MODES --
+GJB.DEBUG = true
+
 -- metadata
 GJB.gVersion = GetAddOnMetadata("GarrisonJukeBox", "Version")
-GJB.gVersionID = {2,0,2,6,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
-GJB.gCurReleaseDate = "03/04/2018"
+GJB.gVersionID = {2,1,0,1,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
+GJB.gCurReleaseDate = "12/17/2018"
 
 -- table to hold all music and zone and music player data
 GJB.musictable = {}
@@ -287,6 +299,7 @@ GJB.EXP_WOD = 7
 GJB.EXP_EVENTS = 8
 GJB.EXP_BLIZZJB = 9
 GJB.EXP_LEGION = 10
+GJB.EXP_BFA = 11
 
 -- Zone Constants
 GJB.ZONE_KALIMDOR = 1
@@ -301,6 +314,7 @@ GJB.ZONE_DUNGEONS = 9
 GJB.ZONE_BATTLEGROUNDS = 10
 GJB.ZONE_SCENARIOS = 11
 GJB.ZONE_LEGION = 12
+GJB.ZONE_BFA = 13
 
 -- time related globals
 GJB.PEWdelta = 0

@@ -1,11 +1,11 @@
-## Interface: 70300
+## Interface: 80100
 ## Title: Garrison JukeBox
 ## Notes: A jukebox for playing wow embedded music.
 ## Author: Azmaedus
-## Version: v2.0.2.6 release
+## Version: v2.1.0.1 release
 ## SavedVariables: GarrisonJukeBoxDB, GarrisonJukeBoxLDBIconDB
 ## License: GPLv2
-## X-Curse-Packaged-Version: v2.0.2.6 release
+## X-Curse-Packaged-Version: v2.1.0.1 release
 ## X-Curse-Project-Name: Garrison JukeBox
 ## X-Curse-Project-ID: garrisonjukebox
 ## X-Curse-Repository-ID: wow/garrisonjukebox/mainline
@@ -45,6 +45,8 @@ music\mus_wod.lua
 music\mus_events.lua
 music\mus_blizzjukebox.lua
 music\mus_legion.lua
+music\mus_bfa.lua
+zones\zoneconversiontable.lua
 zones\zon_kalimdor.lua
 zones\zon_eastern.lua
 zones\zon_outland.lua
@@ -57,6 +59,7 @@ zones\zon_scenarios.lua
 zones\zon_dungeons.lua
 zones\zon_raids.lua
 zones\zon_legion.lua
+zones\zon_bfa.lua
 minimap\mm.lua
 mplayer\config.lua
 coms\coms.lua

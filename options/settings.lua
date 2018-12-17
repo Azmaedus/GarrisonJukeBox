@@ -151,7 +151,7 @@ GJB.Settings = {
 					type = "range",
 					width = "double",
 					min = 1,
-					max = 10,
+					max = 25,
 					step = 1,
 					set = function(info, value) GJB.db.profile.history.maxitems = value end,
 					get = function(info) return GJB.db.profile.history.maxitems end,

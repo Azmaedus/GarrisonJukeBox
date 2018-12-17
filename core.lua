@@ -81,6 +81,7 @@ function GJB:GetExpansions()
 		GJB.Expansions[GJB.EXP_EVENTS]["name"],
 		GJB.Expansions[GJB.EXP_BLIZZJB]["name"],
 		GJB.Expansions[GJB.EXP_LEGION]["name"],
+		GJB.Expansions[GJB.EXP_BFA]["name"],
 	}
 end
 -- ------------------------------------------------------------
@@ -188,6 +189,7 @@ function GJB:GetContinents()
 		GJB.Continents[GJB.ZONE_BATTLEGROUNDS]["name"], 
 		GJB.Continents[GJB.ZONE_SCENARIOS]["name"], 
 		GJB.Continents[GJB.ZONE_LEGION]["name"], 
+		GJB.Continents[GJB.ZONE_BFA]["name"], 
 	}
 end
 -- ------------------------------------------------------------
@@ -197,6 +199,7 @@ function GJB:GetZone(info) return GJB.zone end
 -- ------------------------------------------------------------
 -- Get a list of zones within the selected continent/category
 function GJB:GetCurContinentZoneList()
+	--print(self:GetContinent())
 	local tbl = self.zonetable[self:GetContinent()]
 	local t = {}
 	for k, v in ipairs(tbl) do
@@ -377,7 +380,7 @@ end
 function GJB:ProcessInfo()
 	local playstate = false
 	local stopmus = false
-	--self:Print("ProcessInfo gCurZoneID: " .. tostring(gCurZoneID))
+	--self:Print("ProcessInfo gCurZoneID: " .. tostring(self.gCurZoneID))
 	
 	-- check if advanced is enabled
 	if self.db.profile.advenabled == true then
@@ -436,7 +439,7 @@ end
 -- -------------------------------------------
 function GJB:IsInZoneList(id)
 	for _, v in ipairs(self.db.profile.zonelist) do
-		if v.zone == id then
+		if GJB.MapIDTableConversion[id] == v.zone then
 			return true
 		end
 	end
@@ -448,7 +451,7 @@ end
 -- -------------------------------------------
 function GJB:IsInAdvZoneList(id)
 	for _, v in ipairs(self.db.profile.advzonelist) do
-		if v.zone == id then
+		if GJB.MapIDTableConversion[id] == v.zone then
 			return true
 		end
 	end

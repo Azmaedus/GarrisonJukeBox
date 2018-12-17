@@ -548,7 +548,7 @@ function GJB:ReleaseAllHistoryButtons()
 	for k, v in ipairs(GJB.historypool) do
 		v:SetText("")
 		v:RegisterForClicks()
-		v:UnregisterEvent("OnClick")
+		--v:UnregisterEvent("OnClick")
 		v:Hide()
 	end
 end
