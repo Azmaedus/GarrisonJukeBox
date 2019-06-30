@@ -240,7 +240,7 @@
 	12-17-2018 - 2.1.0.1	Changed interface version to 80100
 										Added BFA zones (new raids and battlegrounds to come...)
 
-	06-30-2019 - 2.1.0.2	Changed interface version to 80200
+	06-30-2019 - 2.1.0.2	Changed interface version to 80200.
 										
 	Known Bugs/Issues
 	-------------------------
