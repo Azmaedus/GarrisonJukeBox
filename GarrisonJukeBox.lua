@@ -240,6 +240,8 @@
 	12-17-2018 - 2.1.0.1	Changed interface version to 80100
 										Added BFA zones (new raids and battlegrounds to come...)
 
+	06-30-2019 - 2.1.0.2	Changed interface version to 80200
+										
 	Known Bugs/Issues
 	-------------------------
 	- The alignment of text in the selected sample music is aligned to the right but should be left. This is caused by Ace3 GUI; not a bug.
@@ -257,8 +259,8 @@ GJB.DEBUG = true
 
 -- metadata
 GJB.gVersion = GetAddOnMetadata("GarrisonJukeBox", "Version")
-GJB.gVersionID = {2,1,0,1,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
-GJB.gCurReleaseDate = "12/17/2018"
+GJB.gVersionID = {2,1,0,2,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
+GJB.gCurReleaseDate = "06/30/2019"
 
 -- table to hold all music and zone and music player data
 GJB.musictable = {}
