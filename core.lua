@@ -554,8 +554,10 @@ function GJB:PlaySTMMusic()
 		GJB:UpdateHistory()
 	end
 	
-	PlayMusic(song[GJB.MT_MUSICFILE])
-	GJB:SetNowPlayingText( GJB:ExtractMP3Filename( song[GJB.MT_MUSICFILE] ) )
+	if song[GJB.MT_BLIZZFILEID] ~= nil then
+		PlayMusic(song[GJB.MT_BLIZZFILEID])
+		GJB:SetNowPlayingText( GJB:ExtractMP3Filename( song[GJB.MT_MUSICFILE] ) )
+	end
 
 	if GJB.db.profile.chatoutput then
 		self:Print(L["PLAYING"] .. "(STMode)" .. song[self.MT_MUSICFILE] .. " (" .. files[self.gMusicIndex].index .. ")  " .. mins .. ":" .. fmt("%02d", secs))
@@ -600,9 +602,11 @@ function GJB:PlayAllMusic()
 		GJB:UpdateHistory()
 	end
 	
-	PlayMusic(song[GJB.MT_MUSICFILE])
-	GJB:SetNowPlayingText( GJB:ExtractMP3Filename( song[GJB.MT_MUSICFILE] ) )
-
+	if song[GJB.MT_BLIZZFILEID] ~= nil then
+		PlayMusic(song[GJB.MT_BLIZZFILEID])
+		GJB:SetNowPlayingText( GJB:ExtractMP3Filename( song[GJB.MT_MUSICFILE] ) )
+	end
+	
 	if self.db.profile.chatoutput then
 		self:Print(L["PLAYING"] .. "#" .. title .. " - " .. GJB.Expansions[xpac].name .. " / " .. self.musictable[xpac][title].name .. " \013(" .. song[GJB.MT_MUSICFILE] .. ") " .. tmins .. ":" .. fmt("%02d", tsecs))
 	end
@@ -744,8 +748,10 @@ function GJB:PlayJukebox(adv)
 		GJB:UpdateHistory()
 	end
 	
-	PlayMusic(nxf[GJB.MT_MUSICFILE])
-	GJB:SetNowPlayingText( GJB:ExtractMP3Filename( nxf[GJB.MT_MUSICFILE] ) )
+	if nxf[GJB.MT_BLIZZFILEID] ~= nil then
+		PlayMusic(nxf[GJB.MT_BLIZZFILEID])
+		GJB:SetNowPlayingText( GJB:ExtractMP3Filename( nxf[GJB.MT_MUSICFILE] ) )
+	end
 
 	local ptime = mtime
 	local tmins = floor(ptime/60)

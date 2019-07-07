@@ -241,6 +241,11 @@
 										Added BFA zones (new raids and battlegrounds to come...)
 
 	06-30-2019 - 2.1.0.2	Changed interface version to 80200.
+	
+	07-01-2019 - 2.1.1.0	Added FileID argument to music tables (8.2 change)
+										Changed PlayMusic function calls to take this change into consideration.
+										Added Classic Music IDs
+										Added BC Music IDs
 										
 	Known Bugs/Issues
 	-------------------------
@@ -259,8 +264,8 @@ GJB.DEBUG = true
 
 -- metadata
 GJB.gVersion = GetAddOnMetadata("GarrisonJukeBox", "Version")
-GJB.gVersionID = {2,1,0,2,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
-GJB.gCurReleaseDate = "06/30/2019"
+GJB.gVersionID = {2,1,1,0,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
+GJB.gCurReleaseDate = "07/07/2019"
 
 -- table to hold all music and zone and music player data
 GJB.musictable = {}
@@ -279,6 +284,7 @@ GJB.SILENT_PAUSE = 3						-- default silent pause between songs in the playlist
 GJB.MT_MUSICID = 1						-- Index of the id position in a musictable title's song table
 GJB.MT_MUSICFILE = 2						-- Index of the filename position in a musictable title's song table
 GJB.MT_MUSICLEN = 3						-- Index of the length position in a musictable title's song table
+GJB.MT_BLIZZFILEID = 4					-- Blizzard's FileID 8.2 change
 GJB.COMM_PREFIX = "GJB"				-- Used with AceComm prefix concatenation
 GJB.ON_LOAD_TIMER = 5					-- HACK!!! wait n seconds when PLAYYER_LOGIN is triggered before playing music (make sure Blizz level loading script doesn't override PlayMusic() call)
 GJB.ON_ZONE_TIMER = 2					-- HACK!!! wait n seconds when one of 3 zone change events are triggered before playing music (make sure the zoneID has been updated)
