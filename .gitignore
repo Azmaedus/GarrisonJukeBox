@@ -18,6 +18,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Dev files
+*.psd
+musical-1301945_960_720.png
+
 # =========================
 # Operating System Files
 # =========================
