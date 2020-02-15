@@ -87,19 +87,22 @@ GJB.STMode = {
 				GJB.gMusicPlaying = false
 				GJB:CancelTimer(GJB.musicTimer)
 				local sample = GJB.musictable[GJB.stm_expac][GJB.stm_title].files[GJB.stm_samplesound]
-				local musicfile = sample[GJB.MT_MUSICFILE]
+--				local musicfile = sample[GJB.MT_MUSICFILE]
+				if sample[GJB.MT_BLIZZFILEID] ~= nil then
+					local ptime = sample[GJB.MT_MUSICLEN]
+					local tmins = floor(ptime/60)
+					local tsecs = ptime - (tmins * 60)
 
-				local ptime = sample[GJB.MT_MUSICLEN]
-				local tmins = floor(ptime/60)
-				local tsecs = ptime - (tmins * 60)
+					PlayMusic(sample[GJB.MT_MUSICFILE])
+					GJB:SetNowPlayingText( GJB:ExtractMP3Filename( sample[GJB.MT_MUSICFILE] ) )
 
-				PlayMusic(sample[GJB.MT_MUSICFILE])
-				GJB:SetNowPlayingText( GJB:ExtractMP3Filename( sample[GJB.MT_MUSICFILE] ) )
-
-				GJB.gMusicPlaying = true
-				GJB.musicTimer = GJB:ScheduleTimer("TimerEventMusic", ptime)
-				
-				GJB:Print(L["SAMPLE_MUSIC"] .. sample[GJB.MT_MUSICFILE])
+					GJB.gMusicPlaying = true
+					GJB.musicTimer = GJB:ScheduleTimer("TimerEventMusic", ptime)
+					
+					GJB:Print(L["SAMPLE_MUSIC"] .. sample[GJB.MT_MUSICFILE])
+				else
+					GJB:Print("|cffff0000".. L["SKIP_MUSIC"] .. sample[GJB.MT_MUSICFILE] .. "|r")
+				end
 			end,
 			width = "normal",
 			order = 8,

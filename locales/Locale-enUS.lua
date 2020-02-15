@@ -6,7 +6,6 @@ debug = true
 local L = LibStub("AceLocale-3.0"):NewLocale("GarrisonJukeBox", "enUS", true, debug)
 
 L["ABOUT_SLASHCMD_CONFIG"] = [=[- config: Opens the configuration dialog.
-L["ABOUT_SLASHCMD_CONFIG"] = [=[- config: Opens the configuration dialog.
 ]=]
 L["ABOUT_SLASHCMD_HIDEICON"] = [=[- hideicon: Hides the minimap icon.
 ]=]
@@ -163,6 +162,7 @@ L["SEL_YOUR_ZONES"] = "Your Zones"
 L["SEL_YOUR_ZONES_DESC"] = "Your selected zones where GarrisonJukeBox will play music from your jukebox."
 L["SEL_ZONE"] = "Zone"
 L["SEL_ZONE_DESC"] = "Select a zone."
+L["SKIP_MUSIC"] = "Skipped : "
 L["STMSECTION_DESC"] = "This section allows you to create a playlist of specific files within each title. This option will override, but not delete, your other playlists."
 L["TITLE_A_HEROS_SACRIFICE"] = "A Hero's Sacrifice"
 L["TITLE_A_LIGHT_IT_DARKNESS"] = "A Light in the Darkness"

@@ -751,18 +751,23 @@ function GJB:PlayJukebox(adv)
 	if nxf[GJB.MT_BLIZZFILEID] ~= nil then
 		PlayMusic(nxf[GJB.MT_BLIZZFILEID])
 		GJB:SetNowPlayingText( GJB:ExtractMP3Filename( nxf[GJB.MT_MUSICFILE] ) )
-	end
 
-	local ptime = mtime
-	local tmins = floor(ptime/60)
-	local tsecs = ptime - (tmins * 60)
+		local ptime = mtime
+		local tmins = floor(ptime/60)
+		local tsecs = ptime - (tmins * 60)
 
-	if self.db.profile.chatoutput then
-		self:Print(L["PLAYING"] .. "#" .. self.gTitleIndex .. " - " .. ml[self.gTitleIndex].name .. " \013(" .. mfile .. ") " .. tmins .. ":" .. fmt("%02d", tsecs))
+		if self.db.profile.chatoutput then
+			self:Print(L["PLAYING"] .. "#" .. self.gTitleIndex .. " - " .. ml[self.gTitleIndex].name .. " \013(" .. mfile .. ") " .. tmins .. ":" .. fmt("%02d", tsecs))
+		end
+		
+		self.gMusicPlaying = true
+		self.musicTimer = self:ScheduleTimer("TimerEventMusic", mtime)
+	else
+		GJB:Print("|cffff0000".. L["SKIP_MUSIC"] .. nxf[GJB.MT_MUSICFILE] .. "|r")
+
+		self.gMusicPlaying = true
+		self.musicTimer = self:ScheduleTimer("TimerEventMusic", 3)
 	end
-	
-	self.gMusicPlaying = true
-	self.musicTimer = self:ScheduleTimer("TimerEventMusic", mtime)
 
 	self.gTitleIndexPrev = self.gTitleIndex
 	self.gMusicIndexPrev = self.gMusicIndex
