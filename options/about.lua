@@ -44,5 +44,19 @@ GJB.About = {
 			fontSize = "small",
 			order = 4,
 		},
+		specialthanks = {
+			name = L["ADDON_THANKS"] .. " " .. "Amathea, Purifico",
+			type = "description",
+			width = "full",
+			fontSize = "medium",
+			order = 5,
+		},
+		translators = {
+			name = L["ADDON_TRANSLATORS"] .. " " .. "Ananhaid, Bullseiify",
+			type = "description",
+			width = "full",
+			fontSize = "medium",
+			order = 6,
+		},
 	},
 }
