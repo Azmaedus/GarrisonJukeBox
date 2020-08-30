@@ -2,6 +2,7 @@
 -- [1] : Integer - ID of the music (new system)
 -- [2] : String - Path of the music file
 -- [3] : Integer - Length of the music file in seconds
+-- [4] : Integer - Blizzard File ID
 
 -- Get localization
 local GJB = LibStub("AceAddon-3.0"):GetAddon("GarrisonJukeBox")

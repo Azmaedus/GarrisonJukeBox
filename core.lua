@@ -743,6 +743,7 @@ function GJB:PlayJukebox(adv)
 		histdata.xname = ml[self.gTitleIndex].name 
 		histdata.tname = nxf[GJB.MT_MUSICFILE]
 		histdata.file = nxf[GJB.MT_MUSICFILE]
+		histdata.fileid = nxf[GJB.MT_BLIZZFILEID]
 		histdata.time = mtime
 		GJB:AddToHistory(histdata)
 		GJB:UpdateHistory()

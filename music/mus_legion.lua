@@ -2,6 +2,7 @@
 -- [1] : Integer - ID of the music (new system)
 -- [2] : String - Path of the music file
 -- [3] : Integer - Length of the music file in seconds
+-- [4] : Integer - Blizzard File ID
 
 -- Get localization
 local GJB = LibStub("AceAddon-3.0"):GetAddon("GarrisonJukeBox")
@@ -13,17 +14,17 @@ local music = {
 		id = 252,
 		name = L["TITLE_LEGION_ANDUIN"],
 		files = {
-			{2594, "sound\\music\\Legion\\MUS_70_AnduinPt1_A1.mp3", 74},
-			{2595, "sound\\music\\Legion\\MUS_70_AnduinPt1_A2.mp3", 112},
-			{2596, "sound\\music\\Legion\\MUS_70_AnduinPt1_B.mp3", 140},
-			{2597, "sound\\music\\Legion\\MUS_70_AnduinPt1_C.mp3", 137},
-			{2598, "sound\\music\\Legion\\MUS_70_AnduinPt1_D.mp3", 89},
-			{2599, "sound\\music\\Legion\\MUS_70_AnduinPt1_E.mp3", 70},
-			{2600, "sound\\music\\Legion\\MUS_70_AnduinPt1_H1.mp3", 87},
-			{2601, "sound\\music\\Legion\\MUS_70_AnduinPt1_H2.mp3", 115},
-			{2602, "sound\\music\\Legion\\MUS_70_AnduinPt2_B.mp3", 111},
-			{2603, "sound\\music\\Legion\\MUS_70_AnduinPt2_C.mp3", 53},
-			{2604, "sound\\music\\Legion\\MUS_70_AnduinPt2_H.mp3", 122},
+			{2594, "sound\\music\\Legion\\MUS_70_AnduinPt1_A1.mp3", 74, 1417240},
+			{2595, "sound\\music\\Legion\\MUS_70_AnduinPt1_A2.mp3", 112, 1417241},
+			{2596, "sound\\music\\Legion\\MUS_70_AnduinPt1_B.mp3", 140, 1417242},
+			{2597, "sound\\music\\Legion\\MUS_70_AnduinPt1_C.mp3", 137, 1417243},
+			{2598, "sound\\music\\Legion\\MUS_70_AnduinPt1_D.mp3", 89, 1417244},
+			{2599, "sound\\music\\Legion\\MUS_70_AnduinPt1_E.mp3", 70, 1417245},
+			{2600, "sound\\music\\Legion\\MUS_70_AnduinPt1_H1.mp3", 87, 1417246},
+			{2601, "sound\\music\\Legion\\MUS_70_AnduinPt1_H2.mp3", 115, 1417247},
+			{2602, "sound\\music\\Legion\\MUS_70_AnduinPt2_B.mp3", 111, 1417248},
+			{2603, "sound\\music\\Legion\\MUS_70_AnduinPt2_C.mp3", 53, 1417249},
+			{2604, "sound\\music\\Legion\\MUS_70_AnduinPt2_H.mp3", 122, 1417250},
 		},
 	},
 

@@ -15,7 +15,7 @@ GJB.Audio = {
 	type = "group",
 	order = 60,
 	args = {
-		txtplaysound = {
+--[[		txtplaysound = {
 			name = L["INP_WOWAUDIOFILE"],
 			type = "input",
 			width = "double",
@@ -70,6 +70,7 @@ GJB.Audio = {
 			width = "full",
 			order = 4,
 		},
+		--]]
 		hdrplayer = {
 			name = L["HDR_AUDIOPLAYER"],
 			type = "header",

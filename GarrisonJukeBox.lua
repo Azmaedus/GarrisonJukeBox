@@ -250,13 +250,23 @@
 	
 	02-15-2020 - 2.1.2.0	Changed interface version to 80300
 							Added WotLK Music IDs
-							Added Cataclysm part 1
+							Added Cataclysm part 1 Music IDs
 							Corrected playing of chosen music not yet ID'ed; skipped and red output.
 										
-	02-16-2020 - 2.1.2.1	Added Cataclysm part 2
-							Added MoP
+	02-16-2020 - 2.1.2.1	Added Cataclysm part 2 Music IDs
+							Added MoP Music IDs
 	
-	02-16-2020 - 2.1.2.2	Added WoD & The Invincible song
+	02-16-2020 - 2.1.2.2	Added WoD & The Invincible song Music IDs
+
+	02-16-2020 - 2.1.2.3	Added Blizzard Tune-O-Tron 5000 Music IDs
+							Removed playing of embeded file via string argument in options
+							Added Blizzard Events Music IDs
+							Added Diablo Anniversary Tristram Guitar in Events
+							Added 7.2.5 Graves Lament (Legion)
+							Added Brawler's Guild - Goblin
+
+	08-30-2020 - 2.1.2.4	Fixed history feature.
+							Fixed drag player frame bug.
 
 	Known Bugs/Issues
 	-------------------------
@@ -275,8 +285,8 @@ GJB.DEBUG = true
 
 -- metadata
 GJB.gVersion = GetAddOnMetadata("GarrisonJukeBox", "Version")
-GJB.gVersionID = {2,1,2,2,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
-GJB.gCurReleaseDate = "16/02/2020"
+GJB.gVersionID = {2,1,2,4,2} -- release major, release minor, build major, build minor, type (alpha 0, beta 1, release 2)
+GJB.gCurReleaseDate = "30/08/2020"
 
 -- table to hold all music and zone and music player data
 GJB.musictable = {}

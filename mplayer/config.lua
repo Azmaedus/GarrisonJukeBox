@@ -18,25 +18,26 @@ function GJB:CreateMusicPlayer()
 	-------------------------------------
 	-- Background Frame
 	-------------------------------------
-	GJB.mplayer.fbg = CreateFrame("Frame", "GJBP_BG", UIParent)
+	GJB.mplayer.fbg = CreateFrame("Frame", nil, UIParent)
 	local fbg = GJB.mplayer.fbg
 	assert(fbg, "Failed to create frame " .. "GJBP_BG") -- failed to create the frame
-	fbg:SetPoint("CENTER", "UIParent", "CENTER", 0, 0)
+
+	fbg:SetPoint("LEFT", UIParent, "LEFT", 0, 0)
 	fbg:SetMovable(true)
 	fbg:EnableMouse(true)
-	fbg:RegisterForDrag(unpack({"RightButton"}))
-
+	fbg:RegisterForDrag("RightButton")
+	
 	fbg:SetScript("OnDragStart", 
 		function( self )
-			if IsAltKeyDown() then
+--			if IsAltKeyDown() then
 				self:StartMoving()
-			end
+--			end
 		end
 	)
 	fbg:SetScript("OnDragStop", 
-		function(self)
+		function( self )
 			self:StopMovingOrSizing()
-			pos = GJB.db.profile.musicplayer.pos
+			local pos = GJB.db.profile.musicplayer.pos
 			pos.a, pos.r, pos.rp, pos.x, pos.y = self:GetPoint(1)
 		end
 	)
@@ -61,8 +62,8 @@ function GJB:CreateMusicPlayer()
 	GJB.mplayer.fhdr = CreateFrame("Frame", "GJBP_Header", fbg)
 	local fhdr = GJB.mplayer.fhdr
 	assert(fhdr, "Failed to create frame " .. "GJBP_Header") -- failed to create the frame
-	fhdr.root = false
-	fhdr:SetPoint("TOPLEFT", "GJBP_BG", "TOPLEFT", 5, -1)
+	--fhdr.root = false
+	fhdr:SetPoint("TOPLEFT", fbg, "TOPLEFT", 5, -1)
 	do
 		local text = {}
 		text = fhdr:CreateFontString(nil, "ARTWORK", "NumberFont_Shadow_Small")
@@ -80,7 +81,7 @@ function GJB:CreateMusicPlayer()
 	fhdr:SetScale(1)
 	fhdr:Show()
 
-	-------------------------------------
+	------------------------------------
 	-- History Scroll
 	-------------------------------------
 	-- Create the parent frame that will contain the inner scroll child,
@@ -88,7 +89,7 @@ function GJB:CreateMusicPlayer()
 	--GJB.mplayer.fp = FPreviewFrame or CreateFrame("ScrollFrame", "FPreviewFrame", fbg)
 	GJB.mplayer.fp = CreateFrame("ScrollFrame", "FPreviewFrame", fbg)
 	local fp = GJB.mplayer.fp
-	fp:SetPoint("TOPLEFT", "GJBP_BG", "BOTTOMLEFT", 0, 0)
+	fp:SetPoint("TOPLEFT", fbg, "BOTTOMLEFT", 0, 0)
 	fp:SetBackdrop(
 	{
 --		bgFile = "Interface/Tooltips/UI-Tooltip-Background",
@@ -106,13 +107,15 @@ function GJB:CreateMusicPlayer()
 	-- This is a bare-bones frame is used to encapsulate the contents of
 	-- the scroll frame.  Each scrollframe can have one scroll child.
 	--GJB.mplayer.fpsc = FPreviewSC or CreateFrame("Frame", "FPreviewSC")
-	GJB.mplayer.fpsc = CreateFrame("Frame", "FPreviewSC")
+	GJB.mplayer.fpsc = CreateFrame("Frame", "FPreviewSC", fp)
 	local fpsc =  GJB.mplayer.fpsc
+	fpsc:SetPoint("TOPLEFT", fp, "TOPLEFT", 0, 0)
 	
 	-- Create the slider that will be used to scroll through the results
 	--GJB.mplayer.fpsb = FPreviewScrollBar or CreateFrame("Slider", "FPreviewScrollBar", fp)
 	GJB.mplayer.fpsb = CreateFrame("Slider", "FPreviewScrollBar", fp)
 	local fpsb = GJB.mplayer.fpsb 
+--	fpsb:SetPoint("TOPLEFT", fp, "TOPLEFT", 0, 0)
 	
 	-- Set up internal textures for the scrollbar, background and thumb texture
 	fpsb.bg = fpsb:CreateTexture(nil, "BACKGROUND")
@@ -132,8 +135,8 @@ function GJB:CreateMusicPlayer()
 	GJB.mplayer.ftitle = CreateFrame("Frame", "GJBP_Title", fbg)
 	local ftitle = GJB.mplayer.ftitle
 	assert(ftitle, "Failed to create frame " .. "GJBP_Title") -- failed to create the frame
-	ftitle.root = false
-	ftitle:SetPoint("TOPLEFT", "GJBP_BG", "TOPLEFT", 5, -17)
+	--ftitle.root = false
+	ftitle:SetPoint("TOPLEFT", fbg, "TOPLEFT", 5, -17)
 	do
 		local text = {}
 		text = ftitle:CreateFontString(nil, "ARTWORK", "NumberFont_Shadow_Small")
@@ -159,7 +162,7 @@ function GJB:CreateMusicPlayer()
 	local fback = GJB.mplayer.fback
 	assert(fback, "Failed to create frame " .. "GJBP_Back") -- failed to create the frame
 	fback.root = false
-	fback:SetPoint("TOPLEFT", "GJBP_BG", "TOPLEFT", MUSICPLAYER_BUTTONMARGIN, MUSICPLAYER_BUTTON_Y)
+	fback:SetPoint("TOPLEFT", fbg, "TOPLEFT", MUSICPLAYER_BUTTONMARGIN, MUSICPLAYER_BUTTON_Y)
 	fback:SetBackdrop(
 	{
 		bgFile = "Interface\\AddOns\\GarrisonJukeBox\\media\\back",
@@ -212,7 +215,7 @@ function GJB:CreateMusicPlayer()
 	local fplay = GJB.mplayer.fplay
 	assert(fplay, "Failed to create frame " .. "GJBP_Play") -- failed to create the frame
 	fplay.root = false
-	fplay:SetPoint("TOPLEFT", "GJBP_BG", "TOPLEFT", MUSICPLAYER_BUTTONMARGIN + 30, MUSICPLAYER_BUTTON_Y)
+	fplay:SetPoint("TOPLEFT", fbg, "TOPLEFT", MUSICPLAYER_BUTTONMARGIN + 30, MUSICPLAYER_BUTTON_Y)
 	fplay:SetBackdrop(
 	{
 		bgFile = "Interface\\AddOns\\GarrisonJukeBox\\media\\play",
@@ -261,7 +264,7 @@ function GJB:CreateMusicPlayer()
 	local fstop = GJB.mplayer.fstop
 	assert(fplay, "Failed to create frame " .. "GJBP_Stop") -- failed to create the frame
 	fstop.root = false
-	fstop:SetPoint("TOPLEFT", "GJBP_BG", "TOPLEFT", MUSICPLAYER_BUTTONMARGIN + 60, MUSICPLAYER_BUTTON_Y)
+	fstop:SetPoint("TOPLEFT", fbg, "TOPLEFT", MUSICPLAYER_BUTTONMARGIN + 60, MUSICPLAYER_BUTTON_Y)
 	fstop:SetBackdrop(
 	{
 		bgFile = "Interface\\AddOns\\GarrisonJukeBox\\media\\stop",
@@ -310,7 +313,7 @@ function GJB:CreateMusicPlayer()
 	local fnext = GJB.mplayer.fnext
 	assert(fnext, "Failed to create frame " .. "GJBP_Next") -- failed to create the frame
 	fnext.root = false
-	fnext:SetPoint("TOPLEFT", "GJBP_BG", "TOPLEFT", MUSICPLAYER_BUTTONMARGIN + 90, MUSICPLAYER_BUTTON_Y)
+	fnext:SetPoint("TOPLEFT", fbg, "TOPLEFT", MUSICPLAYER_BUTTONMARGIN + 90, MUSICPLAYER_BUTTON_Y)
 	fnext:SetBackdrop(
 	{
 		bgFile = "Interface\\AddOns\\GarrisonJukeBox\\media\\next",
@@ -359,7 +362,7 @@ function GJB:CreateMusicPlayer()
 	local fbhist = GJB.mplayer.fbtnhistory
 	assert(fbhist, "Failed to create frame " .. "GJBP_BTNHistory") -- failed to create the frame
 	fbhist.root = false
-	fbhist:SetPoint("TOPLEFT", "GJBP_BG", "TOPLEFT", MUSICPLAYER_BUTTONMARGIN + 150, MUSICPLAYER_BUTTON_Y)
+	fbhist:SetPoint("TOPLEFT", fbg, "TOPLEFT", MUSICPLAYER_BUTTONMARGIN + 150, MUSICPLAYER_BUTTON_Y)
 	fbhist:SetBackdrop(
 	{
 		bgFile = "Interface\\AddOns\\GarrisonJukeBox\\media\\history",
@@ -510,7 +513,7 @@ function GJB:UpdateHistory()
 						GJB:CancelTimer(GJB.musicTimer)
 						StopMusic()
 						GJB:SetNowPlayingText("...")
-						PlayMusic(songs[size - k]["file"])
+						PlayMusic(songs[size - k]["fileid"])
 						GJB:Print(L["PLAYINGHISTORY"] .. songs[size - k]["file"])
 						GJB:SetNowPlayingText(GJB:ExtractMP3Filename(songs[size - k]["file"]))
 					elseif btn == "RightButton" then
@@ -566,14 +569,15 @@ end
 function GJB:CreateHistoryButtonFrames()
 	local pool = GJB.historypool
 	
-	local fp = GJB.mplayer.fp
-	local fpsb = GJB.mplayer.fpsb
-	local fpsc = GJB.mplayer.fpsc
+	local fp = GJB.mplayer.fp 		-- History parent
+	local fpsb = GJB.mplayer.fpsb	-- History Scrollbar
+	local fpsc = GJB.mplayer.fpsc 	-- History Scroll Child container
 	
 	local height = 150
 	local width = 400
 	local Padding = 0
 	
+	-- Create a series of n buttons inside fpsc
 	for i = 1, 10 do
 		local btn = CreateFrame("Button", "HistoryButton" .. i, fpsc)
 		btn:SetPoint("LEFT", GJB.mplayer.fpsc, "LEFT", 0, 0)
@@ -624,7 +628,7 @@ function GJB:CreateHistoryButtonFrames()
 	-- Size and place the parent frame, and set the scrollchild to be the
 	-- frame of font strings we've created
 	fp:SetSize(width, height)
-	fp:SetPoint("CENTER", UIParent, 0, 0)
+	fp:SetPoint("CENTER", 0, 0)
 	fp:SetScrollChild(fpsc)
 	fp:Show()
 	 
